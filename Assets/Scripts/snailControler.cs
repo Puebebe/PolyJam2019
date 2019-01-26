@@ -28,9 +28,11 @@ public class snailControler : MonoBehaviour {
     float jumpActualPower;
     float skillDelay;
     float HitDelay;
+    private GameObject EnemyHurtParticle;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
+        EnemyHurtParticle = GameStateManager.Singleton.EnemyHurtParticle;
         skillsStatus = new int[skillsLeft.Length];
         for (int i = 0; i < skillsStatus.Length; i++)
             {
@@ -184,6 +186,17 @@ public class snailControler : MonoBehaviour {
             {
                 Debug.Log("<b>" + i + " wykonano</b>");
                 LastSkil = "Skill nr " + i;
+
+                #region Instantiate Particles
+
+                if (GameStateManager.Singleton.OpponentHp > 0)
+                {
+                    Instantiate(EnemyHurtParticle, new Vector3(4f, 2f, 0f), EnemyHurtParticle.transform.rotation);
+                }
+                
+
+                #endregion
+
                 int OpponentHp = GameStateManager.Singleton.OpponentHp;
                 GameStateManager.Singleton.OpponentHp = OpponentHp - (i + 1) * baseDamage;
                 HitDelay = animationHitDelay;
@@ -232,6 +245,7 @@ public class snailControler : MonoBehaviour {
         if (!hipotetycznyBlok)
         {
             GameStateManager.Singleton.PlayerHp -= damage;
+            Instantiate(GameStateManager.Singleton.EnemyHurtParticle, this.transform);
         }
     }
 
