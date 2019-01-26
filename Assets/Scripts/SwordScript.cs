@@ -5,21 +5,14 @@ using UnityEngine;
 public class SwordScript : MonoBehaviour
 {
 
-    [SerializeField] float maxlifeTime = 0.5f;
-    private float currentLifeTime = 0;
+    [SerializeField] float maxlifeTime = 1.5f;
 
     private void Start()
-    {
-        currentLifeTime = 0;
+    {       
+        Destroy(this.gameObject, maxlifeTime);
     }
 
     void Update()
-    {    
-        if (currentLifeTime>= maxlifeTime)
-        {
-            Destroy(this.gameObject);
-        }
-
-        currentLifeTime += Time.deltaTime;
+    {            
     }
 }
