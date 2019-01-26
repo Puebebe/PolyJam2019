@@ -21,6 +21,8 @@ public class UIManager : MonoBehaviour {
     private int PlayerHPMaxSize;
     private int EnemyHPMaxSize;
 
+    
+
     private void Awake()
     {
         if (Singleton == null)

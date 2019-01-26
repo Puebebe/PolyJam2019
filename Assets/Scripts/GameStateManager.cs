@@ -80,12 +80,15 @@ public class GameStateManager : MonoBehaviour {
     //list of object to destroy in next scene change
     private List<GameObject> currentlySpawnedObjects = new List<GameObject>();
 
+    [SerializeField] GameObject GameOverScreen;
+
     private void PlayerDeath()
     {
         //chill-liderka
         //jakieś particle?
         //i kurwa wygrana ziomek, następna scena
-        RestartScene();
+        Time.timeScale = 0;
+        Instantiate(GameOverScreen, transform);
     }
 
     private void EnemyDeath()
