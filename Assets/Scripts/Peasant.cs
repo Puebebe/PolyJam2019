@@ -24,11 +24,7 @@ public class Peasant : MonoBehaviour
     {
         if (delay < 0)
         {
-            Sequence mySequenceShake = DOTween.Sequence();
-            Vector3 startPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-            mySequenceShake.Append(transform.DOShakePosition(0.5f,0.15f,7));
-            mySequenceShake.Append(transform.DOMove(startPos, 0.1f));
-            mySequenceShake.OnComplete(StartAttack);
+            StartAttack();
         }
         else
         {
