@@ -11,10 +11,11 @@ public class snailControler : MonoBehaviour {
     [SerializeField] GameObject GameStateManagerScript;
     [SerializeField] float jumpPower;
     [SerializeField] float skillDelayTime;
+    [SerializeField] float animationHitDelay;
     [SerializeField] string[] skillsLeft;
     [SerializeField] string[] skillsRight;
     [SerializeField] string LastSkil = "-";
-    int[] skillsStatus;
+    public int[] skillsStatus;
     float leftX, leftY;
     float rightX, rightY;
     Vector3 startPos;
@@ -22,6 +23,7 @@ public class snailControler : MonoBehaviour {
     bool jump;
     float jumpActualPower;
     float skillDelay;
+    float HitDelay;
 
 	// Use this for initialization
 	void Start () {
@@ -65,7 +67,18 @@ public class snailControler : MonoBehaviour {
         {
             Normal();
         }
-        if (skillDelay > 0)
+        if(HitDelay > 0)
+        {
+            HitDelay -= Time.deltaTime;
+            if (HitDelay <= 0)
+            {
+                for (int i = 0; i < skillsStatus.Length; i++)
+                {
+                    skillsStatus[i] = 0;
+                }
+            }
+        }
+        else if (skillDelay > 0)
         {
             CheckStatus();
             skillDelay -= Time.deltaTime;
@@ -156,10 +169,15 @@ public class snailControler : MonoBehaviour {
             {
                 Debug.Log("<b>" + i + " wykonano</b>");
                 LastSkil = "Skill nr " + i;
-                skillsStatus[i] = 0;
                 int OpponentHp = GameStateManagerScript.GetComponent<GameStateManager>().OpponentHp;
                 GameStateManagerScript.GetComponent<GameStateManager>().OpponentHp = OpponentHp - (i + 1) * 10;
                 HpBarScript.GetComponent<UIManager>().UpdateEnemyHP(OpponentHp - (i+1) * 10);
+                HitDelay = animationHitDelay;
+                for (int x = 0; x < skillsStatus.Length; x++)
+                {
+                    if(x != i)
+                        skillsStatus[x] = 0;
+                }
             }
         }
        
