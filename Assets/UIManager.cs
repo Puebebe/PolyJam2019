@@ -73,7 +73,7 @@ public class UIManager : MonoBehaviour {
         }
         else
         {
-            StartCoroutine(animateImage(EnemyHPRT, PlayerHPMaxSize, hp, PlayerHPList[PlayerHPList.Count - 2], PlayerHPList[0]));
+            StartCoroutine(animateImage(EnemyHPRT, EnemyHPMaxSize, hp, EnemyHPList[EnemyHPList.Count - 2], EnemyHPList[0]));
         }
     }
 

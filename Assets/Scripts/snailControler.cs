@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class snailControler : MonoBehaviour {
 
-    [SerializeField] GameObject snail;
+    public int unlockedSkills = 1;
+
+    [SerializeField] GameObject HpBarScript;
+    [SerializeField] GameObject GameStateManagerScript;
     [SerializeField] float jumpPower;
     [SerializeField] float skillDelayTime;
     [SerializeField] string[] skillsLeft;
@@ -27,9 +30,11 @@ public class snailControler : MonoBehaviour {
             {
             skillsStatus[i] = 0;
             }
-        startPos = snail.transform.position;
-        startScale = snail.transform.localScale;
+        startPos = this.gameObject.transform.localPosition;
+        startScale = this.gameObject.transform.localScale;
         jump = false;
+        HpBarScript.GetComponent<UIManager>().UpdateEnemyHP(100);
+        HpBarScript.GetComponent<UIManager>().UpdatePlayerHP(100);
     }
 	
 	// Update is called once per frame
@@ -40,7 +45,7 @@ public class snailControler : MonoBehaviour {
         rightY = Input.GetAxis("VerticalJoystickR");
         if(jump)
         {
-            snail.transform.position += new Vector3(0, jumpActualPower, 0);
+            this.gameObject.transform.localPosition += new Vector3(0, jumpActualPower * 50, 0);
             jumpActualPower -= Time.deltaTime;
             if(jumpActualPower <= - jumpPower)
             {
@@ -71,7 +76,7 @@ public class snailControler : MonoBehaviour {
             {
                 skillsStatus[i] = 0;
             }
-            Debug.Log("-----------------------");
+            //Debug.Log("-----------------------");
             LastSkil = "";
             skillDelay = skillDelayTime;
         }
@@ -79,21 +84,20 @@ public class snailControler : MonoBehaviour {
 
     void Doge()
     {
-        snail.transform.localScale = startScale - new Vector3(0, 20, 0);
-        snail.transform.position = startPos - new Vector3(0, 1, 0);
+        this.gameObject.transform.localScale = new Vector3(startScale.x, startScale.y / 1.5f, startScale.z);
+        this.gameObject.transform.localPosition = startPos - new Vector3(0, 33.3f, 0);
     }
 
     void Jump()
     {
-        snail.transform.localScale = startScale - new Vector3(0, 20, 0);
         jumpActualPower = jumpPower;
         jump = true;
     }
 
     void Normal()
     {
-        snail.transform.localScale = startScale;
-        snail.transform.position = startPos;
+        this.gameObject.transform.localScale = startScale;
+        this.gameObject.transform.localPosition = startPos;
     }
 
     void CheckStatus()
@@ -121,7 +125,7 @@ public class snailControler : MonoBehaviour {
 
         //Debug.Log("Right Status " + RightStatus);
         //Debug.Log("Left Status " + LeftStatus);
-        for (int i = 0; i < skillsLeft.Length; i++)
+        for (int i = 0; i < unlockedSkills; i++)
         {
             LeftOK = false;
             RightOK = false;
@@ -153,8 +157,19 @@ public class snailControler : MonoBehaviour {
                 Debug.Log("<b>" + i + " wykonano</b>");
                 LastSkil = "Skill nr " + i;
                 skillsStatus[i] = 0;
+                int OpponentHp = GameStateManagerScript.GetComponent<GameStateManager>().OpponentHp;
+                GameStateManagerScript.GetComponent<GameStateManager>().OpponentHp = OpponentHp - (i + 1) * 10;
+                HpBarScript.GetComponent<UIManager>().UpdateEnemyHP(OpponentHp - (i+1) * 10);
             }
         }
        
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        int PlayerHp = GameStateManagerScript.GetComponent<GameStateManager>().PlayerHp;
+        GameStateManagerScript.GetComponent<GameStateManager>().PlayerHp = PlayerHp - 10;
+        HpBarScript.GetComponent<UIManager>().UpdatePlayerHP(PlayerHp - 10);
+        Destroy(collision.gameObject);
     }
 }

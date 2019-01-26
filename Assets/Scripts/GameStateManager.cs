@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GameStateManager : MonoBehaviour {
 
+    public int PlayerHp=100;
+    public int OpponentHp=100;
+
     int currentScene = 0;
     //list of root objects to spawn
     [SerializeField]
