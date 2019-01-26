@@ -1,12 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class BulletScript : MonoBehaviour {
 
     [SerializeField] float speed = 100f;
     public int damage = 10;
-    
+
+
+    private void Start()
+    {
+        transform.DORotate(new Vector3(0,0,1400), 2.5f, RotateMode.Fast);
+    }
+
+
+
     void Update () {
         this.gameObject.transform.localPosition -= new Vector3(speed * Time.deltaTime,0f,0f);
 

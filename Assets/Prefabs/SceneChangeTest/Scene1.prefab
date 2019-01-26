@@ -85,6 +85,7 @@ GameObject:
   - component: {fileID: 4272486611478486}
   - component: {fileID: 114248731482878526}
   - component: {fileID: 212957549894626340}
+  - component: {fileID: 95173520466848738}
   m_Layer: 5
   m_Name: Opponent
   m_TagString: Untagged
@@ -99,8 +100,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1994216258880580}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalPosition: {x: 3.88, y: 1.58, z: 0}
+  m_LocalScale: {x: 22, y: 22, z: 1}
   m_Children:
   - {fileID: 4564041982090748}
   - {fileID: 4749590799402872}
@@ -115,7 +116,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1433770557915728}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4272486611478486}
@@ -129,7 +130,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1515572556302988}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.4, y: 0.4, z: 0}
+  m_LocalPosition: {x: -0.004, y: -0.018, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4272486611478486}
@@ -155,7 +156,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1166169152449224}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.4, y: -0.4, z: 0}
+  m_LocalPosition: {x: 0, y: -0.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4272486611478486}
@@ -206,6 +207,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &95173520466848738
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1994216258880580}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 21f0b73b84d1ed146b3f1c45bcab4454, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114248731482878526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -222,7 +241,7 @@ MonoBehaviour:
   SpawnPos:
   - {fileID: 1515572556302988}
   - {fileID: 1166169152449224}
-  anim: {fileID: 0}
+  anim: {fileID: 95173520466848738}
   BulletPrefab: {fileID: 1028140412005886, guid: f633bbf6629116f42b5aa0a66198c678,
     type: 2}
 --- !u!114 &114390777564619452
@@ -319,7 +338,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ad5148ec2c6801f488a3e8be3f30285f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3570046b7c5969f4b81f88fbd61156bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
