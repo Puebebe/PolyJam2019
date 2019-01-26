@@ -42,7 +42,7 @@ public class snailControler : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (Input.GetJoystickNames()[0].Length == 33)
+        if (Input.GetJoystickNames().Length > 0 && Input.GetJoystickNames()[0].Length == 33)
         {
             leftX = Input.GetAxis("HorizontalJoystickL");
             leftY = Input.GetAxis("VerticalJoystickL");

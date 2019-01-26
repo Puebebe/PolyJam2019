@@ -35,19 +35,5 @@ public class Opponent : MonoBehaviour {
             delay -= Time.deltaTime;
         }
 
-        if (Input.GetKey(KeyCode.S))
-        {
-            anim.SetInteger("state", 0);
-        }
-
-        if (Input.GetKey(KeyCode.R))
-        {
-            anim.SetInteger("state", 1);
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            anim.SetTrigger("AttackTrig");
-        }
 	}
 }

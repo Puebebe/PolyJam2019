@@ -86,10 +86,9 @@ public class GameStateManager : MonoBehaviour {
 
     private void EnemyDeath()
     {
+        NextScene();
         //przechujałeś
         //smutne particle
-        
-        
     }
   
 

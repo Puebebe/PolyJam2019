@@ -273,6 +273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScenesArray:
   - {fileID: 1433770557915728, guid: cc9be610078be9345ba37513e423b73a, type: 2}
+  - {fileID: 1904726454380194, guid: 6d26516ec1eb04548baf0d737d4de173, type: 2}
 --- !u!1 &36091979
 GameObject:
   m_ObjectHideFlags: 0
