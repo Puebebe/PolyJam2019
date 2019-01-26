@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class snailControler : MonoBehaviour {
 
+    public int baseDamage = 10;
     public int unlockedSkills = 1;
 
     //[SerializeField] GameObject HpBarScript; - NOW WE USE SINGLETON
@@ -182,7 +183,7 @@ public class snailControler : MonoBehaviour {
                 Debug.Log("<b>" + i + " wykonano</b>");
                 LastSkil = "Skill nr " + i;
                 int OpponentHp = GameStateManager.Singleton.OpponentHp;
-                GameStateManager.Singleton.OpponentHp = OpponentHp - (i + 1) * 10;
+                GameStateManager.Singleton.OpponentHp = OpponentHp - (i + 1) * baseDamage;
                 HitDelay = animationHitDelay;
                 for (int x = 0; x < skillsStatus.Length; x++)
                 {
