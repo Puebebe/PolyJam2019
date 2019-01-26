@@ -84,18 +84,22 @@ public class GameStateManager : MonoBehaviour {
 
     private void PlayerDeath()
     {
-        //chill-liderka
-        //jakieś particle?
-        //i kurwa wygrana ziomek, następna scena
         Time.timeScale = 0;
         Instantiate(GameOverScreen, transform);
     }
 
     private void EnemyDeath()
     {
-        NextScene();
-        //przechujałeś
-        //smutne particle
+        //destroy every currently spawned object
+        for (int i = 0; i < currentlySpawnedObjects.Count; i++)
+        {
+            Destroy(currentlySpawnedObjects[i]);
+        }
+        if (!UnlockCombos.Singleton.teach)
+        {
+            UnlockCombos.Singleton.TeachNewCombo();
+        }
+        
     }
   
 

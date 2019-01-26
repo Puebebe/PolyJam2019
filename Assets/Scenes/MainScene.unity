@@ -193,6 +193,7 @@ GameObject:
   - component: {fileID: 18944682}
   - component: {fileID: 18944681}
   - component: {fileID: 18944684}
+  - component: {fileID: 18944685}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -282,6 +283,17 @@ MonoBehaviour:
   - {fileID: 1822636599312404, guid: 453d988b2d13ef54099ce77ce0a6d3cb, type: 2}
   GameOverScreen: {fileID: 1749838494838434, guid: c955bed419f14d24ab3b320ece814679,
     type: 2}
+--- !u!114 &18944685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 18944680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98a0d2eb333d0d74ebed9a0c0000acd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &36091979
 GameObject:
   m_ObjectHideFlags: 0
@@ -746,7 +758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseDamage: 50
-  unlockedSkills: 3
+  unlockedSkills: 1
   jumpPower: 0.3
   skillDelayTime: 2
   animationHitDelay: 1

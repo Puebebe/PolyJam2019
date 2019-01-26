@@ -32,7 +32,7 @@ public class VsIntroScript : MonoBehaviour {
 	
     void Finish()
     {
-        GameStateManager.Singleton.OpponentHp = 0;
+        GameStateManager.Singleton.NextScene();
     }
 	// Update is called once per frame
 	void Update () {
