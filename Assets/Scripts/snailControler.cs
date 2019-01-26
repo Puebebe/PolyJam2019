@@ -61,7 +61,7 @@ public class snailControler : MonoBehaviour {
         }
         else if (leftY == -1 && rightY == -1)
         {
-            Doge();
+            Dodge();
         }
         else
         {
@@ -95,10 +95,10 @@ public class snailControler : MonoBehaviour {
         }
     }
 
-    void Doge()
+    void Dodge()
     {
         this.gameObject.transform.localScale = new Vector3(startScale.x, startScale.y / 1.5f, startScale.z);
-        this.gameObject.transform.localPosition = startPos - new Vector3(0, 33.3f, 0);
+        this.gameObject.transform.localPosition = startPos - new Vector3(0f, 0.4f, 0f);
     }
 
     void Jump()
