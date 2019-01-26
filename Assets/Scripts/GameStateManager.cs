@@ -81,6 +81,7 @@ public class GameStateManager : MonoBehaviour {
     //list of object to destroy in next scene change
     private List<GameObject> currentlySpawnedObjects = new List<GameObject>();
 
+    [Space(20)]
     [SerializeField] GameObject GameOverScreen;
 
     private void PlayerDeath()
