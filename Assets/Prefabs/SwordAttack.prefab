@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 61833502231142026}
   - component: {fileID: 114226322835809512}
   - component: {fileID: 50305954429542298}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SwordAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ Transform:
   m_GameObject: {fileID: 1974762651553546}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 13.352935, y: 3.083315, z: 1}
+  m_LocalScale: {x: 10, y: 2.2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -72,7 +72,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxlifeTime: 1.5
+  damage: 10
 --- !u!212 &212220671855437660
 SpriteRenderer:
   m_ObjectHideFlags: 1
