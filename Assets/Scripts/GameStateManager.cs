@@ -9,6 +9,8 @@ public class GameStateManager : MonoBehaviour {
     [SerializeField]
     private GameObject[] FixedContent;
 
+    [SerializeField] public GameObject EnemyHurtParticle;
+
     private void Awake()
     {
         if (Singleton == null)
@@ -33,12 +35,11 @@ public class GameStateManager : MonoBehaviour {
         {
             if (value <= 0)
             {
+                
                 PlayerDeath();
             }
-            else{
-                UIManager.Singleton.UpdatePlayerHP(value);
-                _playerHp = value;
-            }
+            UIManager.Singleton.UpdatePlayerHP(value);
+            _playerHp = value;
             
             
         }
@@ -54,13 +55,13 @@ public class GameStateManager : MonoBehaviour {
             
             if (value <= 0)
             {
+                
                 EnemyDeath();
             }
-            else
-            {
-                UIManager.Singleton.UpdateEnemyHP(value);
-                _enemyHP = value;
-            }
+
+            UIManager.Singleton.UpdateEnemyHP(value);
+            _enemyHP = value;
+
         }
     }
 
