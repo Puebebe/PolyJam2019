@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
 
+    public static UIManager Singleton;
+
     [SerializeField]
     private Image PlayerHP;
     private RectTransform PlayerHPRT;
@@ -21,6 +23,16 @@ public class UIManager : MonoBehaviour {
 
     private void Awake()
     {
+        if (Singleton == null)
+        {
+            Singleton = this;
+        }
+        else
+        {
+            Debug.LogError("Attempted to add second UIManager Singleton!");
+            DestroyImmediate(this.gameObject);
+        }
+
         if (PlayerHP == null)
         {
             PlayerHP = FindImageOfName("PlayerHealthBar");
@@ -110,7 +122,8 @@ public class UIManager : MonoBehaviour {
 
     public void ForceUpdateUI()
     {
-
+        PlayerHPList.Add(PlayerHPList[PlayerHPList.Count - 1]);
+        EnemyHPList.Add(EnemyHPList[EnemyHPList.Count - 1]);
     }
 
     int x = 0;
@@ -120,6 +133,15 @@ public class UIManager : MonoBehaviour {
         UpdatePlayerHP(100 - x);
         UpdateEnemyHP(100 - x);
         x += 20;
+    }
+
+    public void ClearHealthData()
+    {
+        PlayerHPList = new List<int>();
+        EnemyHPList = new List<int>();
+
+        PlayerHPRT.sizeDelta = new Vector2(PlayerHPMaxSize, PlayerHPRT.sizeDelta.y);
+        EnemyHPRT.sizeDelta = new Vector2(EnemyHPMaxSize, EnemyHPRT.sizeDelta.y);
     }
     
 }

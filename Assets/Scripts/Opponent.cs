@@ -11,6 +11,8 @@ public class Opponent : MonoBehaviour {
 
     [SerializeField] Animator anim;
 
+    [SerializeField] GameObject BulletPrefab;
+
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -20,11 +22,11 @@ public class Opponent : MonoBehaviour {
     void Update () {
 		if(delay < 0)
         {
-            GameObject Created = (GameObject)Instantiate(Resources.Load("Bullet"));
+            GameObject Created = Instantiate(BulletPrefab,this.gameObject.transform);
             int rnd = Random.Range(0, SpawnPos.Length);
-            Created.transform.position = SpawnPos[rnd].transform.position;
-            Created.transform.parent = this.gameObject.transform;
-            Created.transform.localScale = new Vector3(1, 1, 1);
+            Created.transform.position = SpawnPos[rnd].transform.position;           
+            Created.gameObject.SetActive(true);
+            //Created.transform.localScale = Vector3.one;
             float rnd2 = Random.Range(SpawnMinDelay, SpawnMaxDelay);
             delay = rnd2;
         }

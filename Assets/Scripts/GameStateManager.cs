@@ -4,8 +4,54 @@ using UnityEngine;
 
 public class GameStateManager : MonoBehaviour {
 
-    public int PlayerHp=100;
-    public int OpponentHp=100;
+    public static GameStateManager Singleton;
+
+    private void Awake()
+    {
+        if (Singleton == null)
+        {
+            Singleton = this;
+        }
+        else
+        {
+            Debug.LogError("Attempted to add second GameStateManager Singleton!");
+            DestroyImmediate(this.gameObject);
+        }
+    }
+
+    private int _playerHp = 100;
+    public int PlayerHp
+    {
+        get
+        {
+            return _playerHp;
+        }
+        set
+        {
+            UIManager.Singleton.UpdatePlayerHP(value);
+            _playerHp = value;
+            if (value <= 0)
+            {
+                PlayerDeath();
+            }
+        }
+    }
+    private int _enemyHP = 100;
+    public int OpponentHp {
+        get
+        {
+            return _enemyHP;
+        }
+        set
+        {
+            UIManager.Singleton.UpdateEnemyHP(value);
+            _enemyHP = value;
+            if (value <= 0)
+            {
+                EnemyDeath();
+            }
+        }
+    }
 
     int currentScene = 0;
     //list of root objects to spawn
@@ -14,34 +60,55 @@ public class GameStateManager : MonoBehaviour {
     private GameObject[] ScenesArray;
     //list of object to destroy in next scene change
     private List<GameObject> currentlySpawnedObjects = new List<GameObject>();
+
+    private void PlayerDeath()
+    {
+        //chill-liderka
+        //jakieś particle?
+        //i kurwa wygrana ziomek, następna scena
+        RestartScene();
+    }
+
+    private void EnemyDeath()
+    {
+        //przechujałeś
+        //smutne particle
+        
+        
+    }
   
+
+    public void RestartScene()
+    {
+        //Next scene pushes current scene + 1, so we need to bring it back to the scene we got killed in
+        currentScene -= 1;
+        //and just load the scene as usual
+        NextScene();
+    }
+
+    //start current scene
+    private void Start()
+    {
+        NextScene();
+    }
 
     public void NextScene()
     {
-        //scene 1 is an exception because there is nothing to destroy yet
-        if (currentScene == 0)
-        {
+        Time.timeScale = 1;
 
-                //prep the object
-                GameObject toSpawn = ScenesArray[0];
-                //spawn it and add it to the list of currently spawned objects
-                currentlySpawnedObjects.Add(Instantiate(toSpawn, toSpawn.transform.position, toSpawn.transform.rotation));
-        }
-        else
-        {
             
-            //destroy every currently spawned object
-            for (int i = 0; i < currentlySpawnedObjects.Count; i++)
-            {
-                Destroy(currentlySpawnedObjects[i]);
-            }
-            //clear the list of currently spawned obejcts
-            currentlySpawnedObjects = new List<GameObject>();
-            //spawn new objects and add them to the list
-
-            GameObject toSpawn = ScenesArray[currentScene];
-            currentlySpawnedObjects.Add(Instantiate(toSpawn, toSpawn.transform.position, toSpawn.transform.rotation));
+        //destroy every currently spawned object
+        for (int i = 0; i < currentlySpawnedObjects.Count; i++)
+        {
+            Destroy(currentlySpawnedObjects[i]);
         }
+        //clear the list of currently spawned obejcts
+        currentlySpawnedObjects = new List<GameObject>();
+        //spawn new objects and add them to the list
+
+        GameObject toSpawn = ScenesArray[currentScene];
+        currentlySpawnedObjects.Add(Instantiate(toSpawn, toSpawn.transform.position, toSpawn.transform.rotation));
+        
         currentScene++;
     }
 }

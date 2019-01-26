@@ -7,11 +7,9 @@ public class BulletScript : MonoBehaviour {
     [SerializeField] float speed = 100f;
     
     void Update () {
-        Vector3 pos = this.gameObject.transform.localPosition;
-        pos.x -= speed * Time.deltaTime;
-        this.gameObject.transform.localPosition = pos;
+        this.gameObject.transform.localPosition -= new Vector3(speed * Time.deltaTime,0f,0f);
 
-        if(this.gameObject.transform.localPosition.x < - Screen.width * 2)
+        if(this.gameObject.transform.localPosition.x < - 6f)
         {
             Destroy(this.gameObject);
         }

@@ -7,8 +7,8 @@ public class snailControler : MonoBehaviour {
 
     public int unlockedSkills = 1;
 
-    [SerializeField] GameObject HpBarScript;
-    [SerializeField] GameObject GameStateManagerScript;
+    //[SerializeField] GameObject HpBarScript; - NOW WE USE SINGLETON
+    //[SerializeField] GameObject GameStateManagerScript; - NOW WE USE SINGLETON
     [SerializeField] float jumpPower;
     [SerializeField] float skillDelayTime;
     [SerializeField] float animationHitDelay;
@@ -35,8 +35,8 @@ public class snailControler : MonoBehaviour {
         startPos = this.gameObject.transform.localPosition;
         startScale = this.gameObject.transform.localScale;
         jump = false;
-        HpBarScript.GetComponent<UIManager>().UpdateEnemyHP(100);
-        HpBarScript.GetComponent<UIManager>().UpdatePlayerHP(100);
+        UIManager.Singleton.UpdateEnemyHP(100);
+        UIManager.Singleton.UpdatePlayerHP(100);
     }
 	
 	// Update is called once per frame
@@ -47,8 +47,8 @@ public class snailControler : MonoBehaviour {
         rightY = Input.GetAxis("VerticalJoystickR");
         if(jump)
         {
-            this.gameObject.transform.localPosition += new Vector3(0, jumpActualPower * 50, 0);
-            jumpActualPower -= Time.deltaTime;
+            this.gameObject.transform.localPosition += new Vector3(0, jumpActualPower, 0);
+            jumpActualPower -= Time.deltaTime/2f;
             if(jumpActualPower <= - jumpPower)
             {
                 jump = false;
@@ -169,9 +169,8 @@ public class snailControler : MonoBehaviour {
             {
                 Debug.Log("<b>" + i + " wykonano</b>");
                 LastSkil = "Skill nr " + i;
-                int OpponentHp = GameStateManagerScript.GetComponent<GameStateManager>().OpponentHp;
-                GameStateManagerScript.GetComponent<GameStateManager>().OpponentHp = OpponentHp - (i + 1) * 10;
-                HpBarScript.GetComponent<UIManager>().UpdateEnemyHP(OpponentHp - (i+1) * 10);
+                int OpponentHp = GameStateManager.Singleton.OpponentHp;
+                GameStateManager.Singleton.OpponentHp = OpponentHp - (i + 1) * 10;
                 HitDelay = animationHitDelay;
                 for (int x = 0; x < skillsStatus.Length; x++)
                 {
@@ -185,9 +184,7 @@ public class snailControler : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        int PlayerHp = GameStateManagerScript.GetComponent<GameStateManager>().PlayerHp;
-        GameStateManagerScript.GetComponent<GameStateManager>().PlayerHp = PlayerHp - 10;
-        HpBarScript.GetComponent<UIManager>().UpdatePlayerHP(PlayerHp - 10);
+        GameStateManager.Singleton.PlayerHp -= 10; //GameStateManager forwards this info to UI Manager.
         Destroy(collision.gameObject);
     }
 }
