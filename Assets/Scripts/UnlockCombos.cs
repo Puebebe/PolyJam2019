@@ -34,7 +34,7 @@ public class UnlockCombos : MonoBehaviour {
     public void TeachNewCombo()
     {
         //unlock new skill
-        if (Player.unlockedSkills < 6)
+        if (Player.unlockedSkills < 5)
         {
             Player.unlockedSkills += 1;
         }
