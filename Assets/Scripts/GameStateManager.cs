@@ -6,6 +6,9 @@ public class GameStateManager : MonoBehaviour {
 
     public static GameStateManager Singleton;
 
+    [SerializeField]
+    private GameObject[] FixedContent;
+
     private void Awake()
     {
         if (Singleton == null)
@@ -73,6 +76,7 @@ public class GameStateManager : MonoBehaviour {
     [SerializeField]
     [Tooltip("feed me gameobjects to spawn, ake sure they have lots of childern in them.")]
     private GameObject[] ScenesArray;
+
     //list of object to destroy in next scene change
     private List<GameObject> currentlySpawnedObjects = new List<GameObject>();
 
@@ -122,6 +126,15 @@ public class GameStateManager : MonoBehaviour {
         //spawn new objects and add them to the list
 
         GameObject toSpawn = ScenesArray[currentScene];
+
+        if (toSpawn.name == "Outro")
+        {
+            foreach (var content in FixedContent)
+            {
+                content.SetActive(false);
+            }
+        }
+
         currentlySpawnedObjects.Add(Instantiate(toSpawn, toSpawn.transform.position, toSpawn.transform.rotation));
         
         currentScene++;
