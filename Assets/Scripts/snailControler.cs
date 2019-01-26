@@ -46,7 +46,7 @@ public class snailControler : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (Input.GetJoystickNames().Length > 0 && Input.GetJoystickNames()[0] == "Controller (XBOX 360 For Windows)" || Input.GetJoystickNames()[0] == "Controller (Xbox 360 Wireless Receiver for Windows)")
+        if (Input.GetJoystickNames().Length > 0 && ( Input.GetJoystickNames()[0] == "Controller (XBOX 360 For Windows)" || Input.GetJoystickNames()[0] == "Controller (Xbox 360 Wireless Receiver for Windows)"))
         {
             leftX = Input.GetAxis("HorizontalJoystickL");
             leftY = Input.GetAxis("VerticalJoystickL");
