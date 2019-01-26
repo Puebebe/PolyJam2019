@@ -126,14 +126,12 @@ public class GameStateManager : MonoBehaviour {
         //spawn new objects and add them to the list
 
         GameObject toSpawn = ScenesArray[currentScene];
-
-        if (toSpawn.name == "Outro")
+        bool noUi = toSpawn.tag == "CutScene"; 
+  
+        foreach (var content in FixedContent)
         {
-            foreach (var content in FixedContent)
-            {
-                content.SetActive(false);
-            }
-        }
+           content.SetActive(!noUi);
+        }             
 
         currentlySpawnedObjects.Add(Instantiate(toSpawn, toSpawn.transform.position, toSpawn.transform.rotation));
         
