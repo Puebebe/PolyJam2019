@@ -68,7 +68,7 @@ public class GameStateManager : MonoBehaviour {
     {
         UIManager.Singleton.ClearHealthData();
         PlayerHp = 100;
-        OpponentHp = 100;
+        OpponentHp = 100 + (currentScene * 10);
     }
 
     int currentScene = 0;
