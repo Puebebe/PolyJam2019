@@ -48,7 +48,7 @@ public class snailControler : MonoBehaviour {
         if(jump)
         {
             this.gameObject.transform.localPosition += new Vector3(0, jumpActualPower, 0);
-            jumpActualPower -= Time.deltaTime/2f;
+            jumpActualPower -= Time.deltaTime;
             if(jumpActualPower <= - jumpPower)
             {
                 jump = false;

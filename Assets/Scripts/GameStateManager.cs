@@ -28,12 +28,16 @@ public class GameStateManager : MonoBehaviour {
         }
         set
         {
-            UIManager.Singleton.UpdatePlayerHP(value);
-            _playerHp = value;
             if (value <= 0)
             {
                 PlayerDeath();
             }
+            else{
+                UIManager.Singleton.UpdatePlayerHP(value);
+                _playerHp = value;
+            }
+            
+            
         }
     }
     private int _enemyHP = 100;
@@ -44,13 +48,24 @@ public class GameStateManager : MonoBehaviour {
         }
         set
         {
-            UIManager.Singleton.UpdateEnemyHP(value);
-            _enemyHP = value;
+            
             if (value <= 0)
             {
                 EnemyDeath();
             }
+            else
+            {
+                UIManager.Singleton.UpdateEnemyHP(value);
+                _enemyHP = value;
+            }
         }
+    }
+
+    private void resetHP()
+    {
+        UIManager.Singleton.ClearHealthData();
+        PlayerHp = 100;
+        OpponentHp = 100;
     }
 
     int currentScene = 0;
@@ -96,6 +111,7 @@ public class GameStateManager : MonoBehaviour {
     {
         Time.timeScale = 1;
 
+        resetHP();
             
         //destroy every currently spawned object
         for (int i = 0; i < currentlySpawnedObjects.Count; i++)
