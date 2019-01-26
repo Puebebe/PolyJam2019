@@ -6,6 +6,7 @@ public class UnlockCombos : MonoBehaviour {
 
     public static UnlockCombos Singleton;
     public snailControler Player;
+    public ImpScript imp;
     int waitForCombo = 1;
     public bool teach = false;
 
@@ -37,6 +38,7 @@ public class UnlockCombos : MonoBehaviour {
         if (Player.unlockedSkills < 5)
         {
             Player.unlockedSkills += 1;
+            imp.StartUpgrade(Player.unlockedSkills);
         }
         else
         {
@@ -45,7 +47,7 @@ public class UnlockCombos : MonoBehaviour {
         
         PanelManager.Singleton.ForceUpdatePanels();
         waitForCombo = Player.unlockedSkills - 1;
-        teach = true;
+        teach = true;        
     }
 
     private void Update()
