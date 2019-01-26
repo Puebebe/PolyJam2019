@@ -195,9 +195,13 @@ public class snailControler : MonoBehaviour {
        
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void ApplyDamage(int damage)
     {
-        GameStateManager.Singleton.PlayerHp -= 10; //GameStateManager forwards this info to UI Manager.
-        Destroy(collision.gameObject);
+        bool hipotetycznyBlok = false;
+        if (!hipotetycznyBlok)
+        {
+            GameStateManager.Singleton.PlayerHp -= damage;
+        }
     }
+
 }
