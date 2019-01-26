@@ -5,7 +5,7 @@ using UnityEngine;
 public class UnlockCombos : MonoBehaviour {
 
     public static UnlockCombos Singleton;
-    snailControler Player;
+    public snailControler Player;
     int waitForCombo = 1;
     public bool teach = false;
 
@@ -24,13 +24,25 @@ public class UnlockCombos : MonoBehaviour {
 
     private void Start()
     {
-        Player = GameObject.FindObjectOfType<snailControler>();
+        if (Player == null)
+        {
+            Player = GameObject.FindObjectOfType<snailControler>();
+        }
+        
     }
 
     public void TeachNewCombo()
     {
         //unlock new skill
-        Player.unlockedSkills += 1;
+        if (Player.unlockedSkills < 6)
+        {
+            Player.unlockedSkills += 1;
+        }
+        else
+        {
+            GameStateManager.Singleton.NextScene();
+        }
+        
         PanelManager.Singleton.ForceUpdatePanels();
         waitForCombo = Player.unlockedSkills - 1;
         teach = true;
