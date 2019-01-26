@@ -24,18 +24,24 @@ public class Peasant : MonoBehaviour
     {
         if (delay < 0)
         {
-            anim.SetTrigger("AttackTrig");
-            float rndDelay = Random.Range(0, 1);
-            Sequence mySequence = DOTween.Sequence();
-            mySequence.AppendInterval(0.25f);
-            mySequence.OnComplete(SpawnWave);
-            delay = attackTimmer + rndDelay;
+            Sequence mySequenceShake = DOTween.Sequence();
+            mySequenceShake.Append(transform.DOShakePosition(0.5f,0.15f,7));
+            mySequenceShake.OnComplete(StartAttack);
         }
         else
         {
             delay -= Time.deltaTime;
         }
+    }
 
+    public void StartAttack()
+    {
+        anim.SetTrigger("AttackTrig");
+        float rndDelay = Random.Range(0, 1);
+        Sequence mySequence = DOTween.Sequence();
+        mySequence.AppendInterval(0.25f);
+        mySequence.OnComplete(SpawnWave);
+        delay = attackTimmer + rndDelay;
     }
 
     public void SpawnWave()
