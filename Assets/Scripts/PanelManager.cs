@@ -34,7 +34,7 @@ public class PanelManager : MonoBehaviour {
         for (int i = 0; i < UnlockedSkils; i++) 
         {
             Panels[i].GetComponent<Image>().color = NormalPanelColor;
-            for (int x = 0; x < 5; x++)
+            for (int x = 0; x < Panels[i].transform.childCount; x++)
             {
                 Panels[i].transform.GetChild(x).gameObject.SetActive(true);
             }
@@ -42,7 +42,7 @@ public class PanelManager : MonoBehaviour {
         for (int i = UnlockedSkils; i < Panels.Length; i++)
         {
             Panels[i].GetComponent<Image>().color = lockPanelColor;
-            for (int x = 0; x < 5; x++)
+            for (int x = 0; x < Panels[i].transform.childCount; x++)
             {
                 Panels[i].transform.GetChild(x).gameObject.SetActive(false);
             }
@@ -58,7 +58,7 @@ public class PanelManager : MonoBehaviour {
             {
                 Panels[i].transform.GetChild(x).GetComponent<Image>().color = ProgressArrowColor;
             }
-            for (int x = SkillsStatus[i]; x < 5; x++)
+            for (int x = SkillsStatus[i]; x < Panels[i].transform.childCount; x++)
             {
                 Panels[i].transform.GetChild(x).GetComponent<Image>().color = NormalArrowColor;
             }
