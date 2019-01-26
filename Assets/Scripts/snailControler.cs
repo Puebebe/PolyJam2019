@@ -40,11 +40,23 @@ public class snailControler : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
-        leftX = Input.GetAxis("HorizontalJoystickL");
-        leftY = Input.GetAxis("VerticalJoystickL");
-        rightX = Input.GetAxis("HorizontalJoystickR");
-        rightY = Input.GetAxis("VerticalJoystickR");
+	void Update ()
+    {
+        if (Input.GetJoystickNames()[0].Length == 33)
+        {
+            leftX = Input.GetAxis("HorizontalJoystickL");
+            leftY = Input.GetAxis("VerticalJoystickL");
+            rightX = Input.GetAxis("HorizontalJoystickR");
+            rightY = Input.GetAxis("VerticalJoystickR");
+        }
+        else
+        {
+            leftX = Mathf.Clamp(Input.GetAxis("HorizontalL") * 5f, -1f, 1f);
+            leftY = Mathf.Clamp(Input.GetAxis("VerticalL") * 5f, -1f, 1f);
+            rightX = Mathf.Clamp(Input.GetAxis("HorizontalR") * 5f, -1f, 1f);
+            rightY = Mathf.Clamp(Input.GetAxis("VerticalR") * 5f, -1f, 1f);
+        }
+
         if(jump)
         {
             this.gameObject.transform.localPosition += new Vector3(0, jumpActualPower, 0);
