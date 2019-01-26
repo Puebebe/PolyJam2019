@@ -15,7 +15,7 @@ public class snailControler : MonoBehaviour {
     [SerializeField] float animationHitDelay;
     [SerializeField] string[] skillsLeft;
     [SerializeField] string[] skillsRight;
-    [SerializeField] string LastSkil = "-";
+    [SerializeField] public string LastSkil = "-";
     public int[] skillsStatus;
     float leftX, leftY;
     float rightX, rightY;
@@ -36,8 +36,6 @@ public class snailControler : MonoBehaviour {
         startPos = this.gameObject.transform.localPosition;
         startScale = this.gameObject.transform.localScale;
         jump = false;
-        UIManager.Singleton.UpdateEnemyHP(100);
-        UIManager.Singleton.UpdatePlayerHP(100);
     }
 	
 	// Update is called once per frame

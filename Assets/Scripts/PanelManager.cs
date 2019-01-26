@@ -5,12 +5,27 @@ using UnityEngine;
 
 public class PanelManager : MonoBehaviour {
 
+    public static PanelManager Singleton;
+
     [SerializeField] Color NormalArrowColor, ProgressArrowColor, NormalPanelColor, lockPanelColor;
     [SerializeField] GameObject Player;
     [SerializeField] GameObject[] Panels;
 
     int[] SkillsStatus;
     int UnlockedSkils;
+
+    private void Awake()
+    {
+        if (Singleton == null)
+        {
+            Singleton = this;
+        }
+        else
+        {
+            Debug.LogError("Attempted to create second PanelManager Singleton!");
+            DestroyImmediate(this.gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -48,6 +63,11 @@ public class PanelManager : MonoBehaviour {
                 Panels[i].transform.GetChild(x).GetComponent<Image>().color = NormalArrowColor;
             }
         }
+    }
+
+    public void ForceUpdatePanels()
+    {
+        Start();
     }
 
 
