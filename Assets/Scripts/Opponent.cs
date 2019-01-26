@@ -9,8 +9,11 @@ public class Opponent : MonoBehaviour {
     [SerializeField] GameObject [] SpawnPos;
     float delay;
 
+    [SerializeField] Animator anim;
+
     private void Start()
     {
+        anim = GetComponent<Animator>();
         delay = SpawnMaxDelay;
     }
 
@@ -28,6 +31,21 @@ public class Opponent : MonoBehaviour {
         else
         {
             delay -= Time.deltaTime;
+        }
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            anim.SetInteger("state", 0);
+        }
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            anim.SetInteger("state", 1);
+        }
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            anim.SetTrigger("AttackTrig");
         }
 	}
 }
