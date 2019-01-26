@@ -10,6 +10,9 @@ public class snailControler : MonoBehaviour {
 
     //[SerializeField] GameObject HpBarScript; - NOW WE USE SINGLETON
     //[SerializeField] GameObject GameStateManagerScript; - NOW WE USE SINGLETON
+
+        
+    [SerializeField] Animator anim;
     [SerializeField] float jumpPower;
     [SerializeField] float skillDelayTime;
     [SerializeField] float animationHitDelay;
@@ -57,7 +60,7 @@ public class snailControler : MonoBehaviour {
         }
 
         if(jump)
-        {
+        {            
             this.gameObject.transform.localPosition += new Vector3(0, jumpActualPower, 0);
             jumpActualPower -= Time.deltaTime;
             if(jumpActualPower <= - jumpPower)
@@ -114,6 +117,7 @@ public class snailControler : MonoBehaviour {
 
     void Jump()
     {
+        anim.SetTrigger("TrigJump");
         jumpActualPower = jumpPower;
         jump = true;
     }
@@ -188,9 +192,38 @@ public class snailControler : MonoBehaviour {
                     if(x != i)
                         skillsStatus[x] = 0;
                 }
+
+                UpdateSnailAnimation(i);
             }
         }
        
+    }
+
+    void UpdateSnailAnimation(int i)
+    {
+        switch (i)
+        {
+            case 0:
+                anim.SetTrigger("TrigAttack1");
+                break;
+            case 1:
+                anim.SetTrigger("TrigBayblade");
+                break;
+            case 2:
+                anim.SetTrigger("TrigAttack1");
+                break;
+            case 3:
+                anim.SetTrigger("TrigAttack1");
+                break;
+            case 4:
+                anim.SetTrigger("TrigAttack1");
+                break;
+            case 5:
+                anim.SetTrigger("TrigAttack1");
+                break;
+
+        }
+
     }
 
     public void ApplyDamage(int damage)
