@@ -7,8 +7,8 @@ public class GameStateManager : MonoBehaviour {
 
     public static GameStateManager Singleton;
 
-    [SerializeField]
-    private GameObject[] FixedContent;
+    [SerializeField] private GameObject[] FixedContent;
+    [SerializeField] public snailControler player;
 
     [SerializeField] public GameObject EnemyHurtParticle;
 

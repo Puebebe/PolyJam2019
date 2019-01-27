@@ -275,6 +275,7 @@ MonoBehaviour:
   FixedContent:
   - {fileID: 92167075}
   - {fileID: 1347566342}
+  player: {fileID: 92167080}
   EnemyHurtParticle: {fileID: 1511951793264770, guid: 478390a24f5023b40be4ffdeca7b3963,
     type: 2}
   ScenesArray:
@@ -658,6 +659,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseDamage: 50
   unlockedSkills: 1
+  isUntouchable: 0
   anim: {fileID: 389748190}
   jumpPower: 0.3
   skillDelayTime: 2

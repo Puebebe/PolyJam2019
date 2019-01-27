@@ -7,11 +7,12 @@ public class snailControler : MonoBehaviour {
 
     public int baseDamage = 10;
     public int unlockedSkills = 1;
+    public bool isUntouchable = false;
 
     //[SerializeField] GameObject HpBarScript; - NOW WE USE SINGLETON
     //[SerializeField] GameObject GameStateManagerScript; - NOW WE USE SINGLETON
 
-        
+
     [SerializeField] Animator anim;
     [SerializeField] float jumpPower;
     [SerializeField] float skillDelayTime;
@@ -79,6 +80,10 @@ public class snailControler : MonoBehaviour {
         {
             Dodge();
         }
+        else if (leftX == -1 && rightX == -1)
+        {
+            Block();
+        }
         else
         {
             Normal();
@@ -111,6 +116,7 @@ public class snailControler : MonoBehaviour {
         }
     }
 
+
     void Dodge()
     {
         this.gameObject.transform.localScale = new Vector3(startScale.x, startScale.y / 1.5f, startScale.z);
@@ -124,10 +130,16 @@ public class snailControler : MonoBehaviour {
         jump = true;
     }
 
+    private void Block()
+    {
+        anim.SetBool("BoolBlock", true);
+    }
+
     void Normal()
     {
         this.gameObject.transform.localScale = startScale;
         this.gameObject.transform.localPosition = startPos;
+        anim.SetBool("BoolBlock", false);
     }
 
     void CheckStatus()
@@ -241,8 +253,7 @@ public class snailControler : MonoBehaviour {
 
     public void ApplyDamage(int damage)
     {
-        bool hipotetycznyBlok = false;
-        if (!hipotetycznyBlok)
+        if (!isUntouchable)
         {
             GameStateManager.Singleton.PlayerHp -= damage;
             Instantiate(GameStateManager.Singleton.EnemyHurtParticle, this.transform);
