@@ -33,7 +33,7 @@ public class GolemScript : MonoBehaviour {
     public void StartAttack()
     {
         anim.SetTrigger("AttackTrig");
-        float rndDelay = Random.Range(0, 1);
+        float rndDelay = Random.Range(0f, 1f);
         Sequence mySequence = DOTween.Sequence();
         mySequence.AppendInterval(0.25f);
         mySequence.OnComplete(SpawnWave);
