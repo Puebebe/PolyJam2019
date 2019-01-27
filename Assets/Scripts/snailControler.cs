@@ -50,6 +50,12 @@ public class snailControler : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        if (Input.GetButton("Fire2"))
+        {
+            int OpponentHp = GameStateManager.Singleton.OpponentHp;
+            GameStateManager.Singleton.OpponentHp = OpponentHp - 100;
+        }
+
         if (Input.GetJoystickNames().Length > 0 && ( Input.GetJoystickNames()[0] == "Controller (XBOX 360 For Windows)" || Input.GetJoystickNames()[0] == "Controller (Xbox 360 Wireless Receiver for Windows)"))
         {
             leftX = Input.GetAxis("HorizontalJoystickL");
@@ -243,7 +249,8 @@ public class snailControler : MonoBehaviour {
 
                 int OpponentHp = GameStateManager.Singleton.OpponentHp;
                 int rnd = UnityEngine.Random.Range(-i-1, i+2);
-                GameStateManager.Singleton.OpponentHp = OpponentHp - (i + 1) * baseDamage + rnd;
+                int damage  = (i + 1) * baseDamage + rnd;
+                GameStateManager.Singleton.OpponentHp = OpponentHp - damage;
                 HitDelay = animationHitDelay;
                 for (int x = 0; x < skillsStatus.Length; x++)
                 {
