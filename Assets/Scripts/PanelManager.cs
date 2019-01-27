@@ -9,7 +9,7 @@ public class PanelManager : MonoBehaviour {
 
     [SerializeField] Color NormalArrowColor, ProgressArrowColor, NormalPanelColor, lockPanelColor;
     [SerializeField] GameObject Player;
-    [SerializeField] GameObject[] Panels;
+    [SerializeField] public GameObject[] Panels;
 
     int[] SkillsStatus;
     int UnlockedSkils;

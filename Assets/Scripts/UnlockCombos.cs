@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UnlockCombos : MonoBehaviour {
 
@@ -57,15 +58,39 @@ public class UnlockCombos : MonoBehaviour {
         teach = true;
     }
 
+    private bool glowing = false;
+
     private void Update()
     {
         if (teach)
         {
+            if (!glowing)
+            {
+                glowing = true;
+                StartCoroutine(tutorialGlow());
+            }
             if (Player.LastSkil == ("Skill nr " + waitForCombo))
             {
                 teach = false;
                 GameStateManager.Singleton.NextScene();
             }
         }
+    }
+
+    IEnumerator tutorialGlow()
+    {
+        var panel = PanelManager.Singleton.Panels[Player.unlockedSkills - 1].GetComponent<Image>();
+        for (int i = 0; i < 10; i++)
+        {
+            panel.color = Color.Lerp(Color.white, Color.yellow, i / 10f);
+            yield return new WaitForSecondsRealtime(0.1f);
+        }
+        for (int i = 0; i < 10; i++)
+        {
+            panel.color = Color.Lerp(Color.yellow, Color.white, i / 10f);
+            yield return new WaitForSecondsRealtime(0.1f);
+        }
+        panel.color = Color.white;
+        glowing = false;
     }
 }
