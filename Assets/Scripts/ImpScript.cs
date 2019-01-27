@@ -27,11 +27,11 @@ public class ImpScript : MonoBehaviour
 
 
         Sequence mySequence = DOTween.Sequence();
-        mySequence.Append(transform.DOMove(new Vector3(trag2D.x - 15 + xOffset, trag2D.y + yOffset, 0), 0f));
+        mySequence.Append(transform.DOMove(new Vector3(trag2D.x - 16 + xOffset, trag2D.y + yOffset, 0), 0f));
         mySequence.Append(transform.DOMove(new Vector3(trag2D.x + xOffset, trag2D.y + yOffset, 0), 2f));
         mySequence.AppendCallback(AttackAnim);
         mySequence.AppendInterval(0.5f);
-        mySequence.Append(transform.DOMove(new Vector3(trag2D.x + 15 + xOffset, trag2D.y + yOffset, 0), 2f));
+        mySequence.Append(transform.DOMove(new Vector3(trag2D.x + 16 + xOffset, trag2D.y + yOffset, 0), 2f));
         StartCoroutine(SpawnParticle());
     }
 
