@@ -39,4 +39,4 @@ MonoBehaviour:
     textMeshProEnabled: 0
     tk2DEnabled: 0
   showPlayingTweens: 0
-  showPausedTweens: 0
+  showPausedTweens: 1

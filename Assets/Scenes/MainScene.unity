@@ -217,7 +217,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -1637,7 +1637,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4724531378622844, guid: afccd7184dec56f449b5c31f8f2c1fd8, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.5799866
+      value: 1.86
       objectReference: {fileID: 0}
     - target: {fileID: 4724531378622844, guid: afccd7184dec56f449b5c31f8f2c1fd8, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1663,6 +1663,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 95778267528312810, guid: afccd7184dec56f449b5c31f8f2c1fd8,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 466f35e4a34986249b0bfa9fbb22cb70, type: 2}
     - target: {fileID: 114207506682603554, guid: afccd7184dec56f449b5c31f8f2c1fd8,
         type: 2}
       propertyPath: targetsList.Array.data[0]
@@ -1688,18 +1693,12 @@ Prefab:
       propertyPath: targetsList.Array.data[4]
       value: 
       objectReference: {fileID: 79536700}
-    - target: {fileID: 4724531378622844, guid: afccd7184dec56f449b5c31f8f2c1fd8, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4724531378622844, guid: afccd7184dec56f449b5c31f8f2c1fd8, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4724531378622844, guid: afccd7184dec56f449b5c31f8f2c1fd8, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 114207506682603554, guid: afccd7184dec56f449b5c31f8f2c1fd8,
+        type: 2}
+      propertyPath: UnlockSkillParticle
+      value: 
+      objectReference: {fileID: 1609213844313606, guid: 8825d22f3effefc4eaf32d16f884490b,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afccd7184dec56f449b5c31f8f2c1fd8, type: 2}
   m_IsPrefabAsset: 0
@@ -2295,7 +2294,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &632592148
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2459,7 +2458,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -510, y: 50.000004}
+  m_AnchoredPosition: {x: -510, y: 50}
   m_SizeDelta: {x: 242, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &670053247
@@ -2474,7 +2473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.7607843}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3876,13 +3875,13 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1048368253}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3917,7 +3916,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NormalArrowColor: {r: 1, g: 1, b: 1, a: 0.39215687}
   ProgressArrowColor: {r: 0.22352941, g: 0.8509804, b: 0.32156864, a: 0.39215687}
-  NormalPanelColor: {r: 1, g: 1, b: 1, a: 0.39215687}
+  NormalPanelColor: {r: 1, g: 1, b: 1, a: 1}
   lockPanelColor: {r: 0.49411765, g: 0.49411765, b: 0.49411765, a: 0.39215687}
   Player: {fileID: 92167075}
   Panels:
@@ -4626,8 +4625,8 @@ Canvas:
   m_GameObject: {fileID: 1347566342}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 18944682}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1

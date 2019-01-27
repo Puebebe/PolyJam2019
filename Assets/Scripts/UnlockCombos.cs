@@ -37,14 +37,21 @@ public class UnlockCombos : MonoBehaviour {
         //unlock new skill
         if (Player.unlockedSkills < 5)
         {
-            Player.unlockedSkills += 1;
-            imp.StartUpgrade(Player.unlockedSkills - 1);
+            StartCoroutine(waitForIMP());
+            imp.StartUpgrade(Player.unlockedSkills);
         }
         else
         {
             GameStateManager.Singleton.NextScene();
         }
         
+        
+    }
+
+    IEnumerator waitForIMP()
+    {
+        yield return new WaitForSecondsRealtime(2f);
+        Player.unlockedSkills += 1;
         PanelManager.Singleton.ForceUpdatePanels();
         waitForCombo = Player.unlockedSkills - 1;
         teach = true;
