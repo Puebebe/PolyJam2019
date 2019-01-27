@@ -21,6 +21,8 @@ public class snailControler : MonoBehaviour {
     [SerializeField] string[] skillsLeft;
     [SerializeField] string[] skillsRight;
     [SerializeField] public string LastSkil = "-";
+    [SerializeField] GameObject FireParticle;
+
     public int[] skillsStatus;
     float leftX, leftY;
     float rightX, rightY;
