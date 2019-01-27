@@ -38,6 +38,7 @@ public class UnlockCombos : MonoBehaviour {
         //unlock new skill
         if (Player.unlockedSkills < 5)
         {
+            teach = true;
             StartCoroutine(waitForIMP());
             imp.StartUpgrade(Player.unlockedSkills);
         }
@@ -55,7 +56,7 @@ public class UnlockCombos : MonoBehaviour {
         Player.unlockedSkills += 1;
         PanelManager.Singleton.ForceUpdatePanels();
         waitForCombo = Player.unlockedSkills - 1;
-        teach = true;
+        
     }
 
     private bool glowing = false;
