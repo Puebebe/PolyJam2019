@@ -9,6 +9,7 @@ public class GameStateManager : MonoBehaviour {
 
     [SerializeField] private GameObject[] FixedContent;
     [SerializeField] public snailControler player;
+    [SerializeField] public int startPlayerHP=100, startOpponentHP=100, levelHPOpponentMultiplier=10;
 
     [SerializeField] public GameObject EnemyHurtParticle;
 
@@ -69,8 +70,8 @@ public class GameStateManager : MonoBehaviour {
     private void resetHP()
     {
         UIManager.Singleton.ClearHealthData();
-        PlayerHp = 100;
-        OpponentHp = 100 + (currentScene * 10);
+        PlayerHp = startPlayerHP;
+        OpponentHp = startOpponentHP + (currentScene * levelHPOpponentMultiplier);
     }
 
     int currentScene = 0;

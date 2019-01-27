@@ -21,8 +21,8 @@ public class snailControler : MonoBehaviour {
     [SerializeField] string[] skillsLeft;
     [SerializeField] string[] skillsRight;
     [SerializeField] public string LastSkil = "-";
-
     [SerializeField] GameObject FireParticle;
+
     public int[] skillsStatus;
     float leftX, leftY;
     float rightX, rightY;
@@ -232,7 +232,8 @@ public class snailControler : MonoBehaviour {
                 #endregion
 
                 int OpponentHp = GameStateManager.Singleton.OpponentHp;
-                GameStateManager.Singleton.OpponentHp = OpponentHp - (i + 1) * baseDamage;
+                int rnd = UnityEngine.Random.Range(-i-1, i+2);
+                GameStateManager.Singleton.OpponentHp = OpponentHp - (i + 1) * baseDamage + rnd;
                 HitDelay = animationHitDelay;
                 for (int x = 0; x < skillsStatus.Length; x++)
                 {
