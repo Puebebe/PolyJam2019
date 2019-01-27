@@ -58,13 +58,15 @@ public class UnlockCombos : MonoBehaviour {
         PanelManager.Singleton.ForceUpdatePanels();
         waitForCombo = Player.unlockedSkills - 1;
         glowing = false;
+        wwaitforimp = false;
     }
 
+    private bool wwaitforimp = true;
     private bool glowing = true;
 
     private void Update()
     {
-        if (teach)
+        if (teach && !wwaitforimp)
         {
             if (!glowing)
             {
@@ -75,6 +77,7 @@ public class UnlockCombos : MonoBehaviour {
             {
                 teach = false;
                 glowing = true;
+                wwaitforimp = true;
                 GameStateManager.Singleton.NextScene();
             }
         }
