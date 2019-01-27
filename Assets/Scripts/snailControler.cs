@@ -138,10 +138,17 @@ public class snailControler : MonoBehaviour {
         anim.SetBool("BoolBlock", true);
     }
 
+    bool fixPosition = true;
+
     void Normal()
     {
         this.gameObject.transform.localScale = startScale;
         this.gameObject.transform.localPosition = startPos;
+        if (fixPosition)
+        {
+            anim.gameObject.transform.localPosition = new Vector3(0.654f, 0f, 0f);
+        }
+        
         anim.SetBool("BoolBlock", false);
     }
 
@@ -223,9 +230,12 @@ public class snailControler : MonoBehaviour {
                 if (LastSkil == "Skill nr 1")
                 {
                     Debug.Log("test");
+                    fixPosition = false;
                     Sequence baybladeSeq = DOTween.Sequence();
                     baybladeSeq.Append(anim.gameObject.transform.DOMove(new Vector3(-4f + (2.1f * 4.5f), -0.2f, 0f), 0.8f));
                     baybladeSeq.Append(anim.gameObject.transform.DOMove(new Vector3(-4f + (0.654f * 4.5f), -0.2f, 0f), 0.5f));
+
+                    StartCoroutine(forceanimationHeight());
                 }
                 
 
@@ -245,6 +255,13 @@ public class snailControler : MonoBehaviour {
             }
         }
        
+    }
+
+    IEnumerator forceanimationHeight()
+    {
+        yield return new WaitForSecondsRealtime(1.4f);
+        fixPosition = true;
+        
     }
 
     void UpdateSnailAnimation(int i)
