@@ -78,9 +78,15 @@ public class UnlockCombos : MonoBehaviour {
                 teach = false;
                 glowing = true;
                 wwaitforimp = true;
-                GameStateManager.Singleton.NextScene();
+                StartCoroutine(showcaseskill());
             }
         }
+    }
+
+    IEnumerator showcaseskill()
+    {
+        yield return new WaitForSecondsRealtime(2f);
+        GameStateManager.Singleton.NextScene();
     }
 
     IEnumerator tutorialGlow()
