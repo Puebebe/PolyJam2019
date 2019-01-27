@@ -18,7 +18,7 @@ public class VsIntroScript : MonoBehaviour {
         blackMask.GetComponent<SpriteRenderer>().material.DOFade(1.0f, 1.2f);
 
         Sequence mySequence = DOTween.Sequence();
-        mySequence.AppendInterval(2.4f);
+        mySequence.AppendInterval(2.2f);
         mySequence.OnComplete(Finish);
 
         Sequence snailSequence = DOTween.Sequence();
