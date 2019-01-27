@@ -14,6 +14,10 @@ public class UIManager : MonoBehaviour {
     [SerializeField]
     private Image EnemyHP;
     private RectTransform EnemyHPRT;
+    [SerializeField]
+    private RectTransform PlayerBGTR;
+    [SerializeField]
+    private RectTransform EnemyBGTR;
 
     private List<int> PlayerHPList = new List<int>();
     private List<int> EnemyHPList = new List<int>();
@@ -104,11 +108,11 @@ public class UIManager : MonoBehaviour {
 
     IEnumerator animateImage(RectTransform img, int maxSize, int newHP, int oldHP, int maxHP)
     {
-        Debug.Log("animuje");
-        Debug.Log("MaxSize: " + maxSize + " newHP: " + newHP + " oldHP: " + oldHP + " maxHP: " + maxHP);
+        //Debug.Log("animuje");
+        //Debug.Log("MaxSize: " + maxSize + " newHP: " + newHP + " oldHP: " + oldHP + " maxHP: " + maxHP);
         //Debug.Log("SizeDelta: " + img.sizeDelta.x);
         var rect = img.sizeDelta;
-        for (int i = 0; i < 2; i++)
+        /*for (int i = 0; i < 2; i++)
         {
             rect.x = (float)maxSize * ((float)newHP / (float)maxHP);
             img.sizeDelta = rect;
@@ -116,10 +120,10 @@ public class UIManager : MonoBehaviour {
             rect.x = (float)maxSize * ((float)oldHP / (float)maxHP);
             img.sizeDelta = rect;
             yield return new WaitForSecondsRealtime(0.1f);
-        }
+        }*/
         rect.x =(float)maxSize * ((float)newHP / (float)maxHP);
         img.sizeDelta = rect;
-
+        yield return new WaitForEndOfFrame();
     }
 
     public void ForceUpdateUI()
@@ -145,5 +149,25 @@ public class UIManager : MonoBehaviour {
         PlayerHPRT.sizeDelta = new Vector2(PlayerHPMaxSize, PlayerHPRT.sizeDelta.y);
         EnemyHPRT.sizeDelta = new Vector2(EnemyHPMaxSize, EnemyHPRT.sizeDelta.y);
     }
-    
+
+    private void FixedUpdate()
+    {
+        if ( Mathf.Abs(PlayerHPRT.sizeDelta.x - PlayerBGTR.sizeDelta.x) < 5f || PlayerHPRT.sizeDelta.x > PlayerBGTR.sizeDelta.x)
+        {
+            PlayerBGTR.sizeDelta = PlayerHPRT.sizeDelta;
+        }
+        else
+        {
+            PlayerBGTR.sizeDelta += Vector2.left;
+        }
+        if (Mathf.Abs(EnemyHPRT.sizeDelta.x - EnemyBGTR.sizeDelta.x) < 5f || EnemyHPRT.sizeDelta.x > EnemyBGTR.sizeDelta.x)
+        {
+            EnemyBGTR.sizeDelta = EnemyHPRT.sizeDelta;
+        }
+        else
+        {
+            EnemyBGTR.sizeDelta += Vector2.left * 2.5f;
+        }
+    }
+
 }
