@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using DG.Tweening;
 
 public class snailControler : MonoBehaviour {
 
@@ -211,6 +212,20 @@ public class snailControler : MonoBehaviour {
                 if (LastSkil == "Skill nr 3")
                 {
                     Instantiate(FireParticle, FireParticle.transform.position, FireParticle.transform.rotation);
+                }
+
+
+                #endregion
+
+                #region bayblade
+
+                Debug.Log(LastSkil);
+                if (LastSkil == "Skill nr 1")
+                {
+                    Debug.Log("test");
+                    Sequence baybladeSeq = DOTween.Sequence();
+                    baybladeSeq.Append(anim.gameObject.transform.DOMove(new Vector3(-4f + (2.1f * 4.5f), -0.2f, 0f), 1f));
+                    baybladeSeq.Append(anim.gameObject.transform.DOMove(new Vector3(-4f + (0.654f * 4.5f), -0.2f, 0f), 1f));
                 }
                 
 
