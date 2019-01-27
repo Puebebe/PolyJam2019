@@ -38,6 +38,8 @@ public class UnlockCombos : MonoBehaviour {
         //unlock new skill
         if (Player.unlockedSkills < 5)
         {
+            glowing = true;
+            teach = true;
             StartCoroutine(waitForIMP());
             imp.StartUpgrade(Player.unlockedSkills);
         }
@@ -55,10 +57,10 @@ public class UnlockCombos : MonoBehaviour {
         Player.unlockedSkills += 1;
         PanelManager.Singleton.ForceUpdatePanels();
         waitForCombo = Player.unlockedSkills - 1;
-        teach = true;
+        glowing = false;
     }
 
-    private bool glowing = false;
+    private bool glowing = true;
 
     private void Update()
     {
@@ -72,6 +74,7 @@ public class UnlockCombos : MonoBehaviour {
             if (Player.LastSkil == ("Skill nr " + waitForCombo))
             {
                 teach = false;
+                glowing = true;
                 GameStateManager.Singleton.NextScene();
             }
         }
