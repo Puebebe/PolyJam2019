@@ -6,6 +6,9 @@ using DG.Tweening;
 
 public class snailControler : MonoBehaviour {
 
+    public GameObject laser1;
+    public GameObject laser2;
+
     public int baseDamage = 10;
     public int unlockedSkills = 1;
     public bool isUntouchable = false;
@@ -285,6 +288,7 @@ public class snailControler : MonoBehaviour {
                 break;
             case 2:
                 anim.SetTrigger("TrigAttack1");
+                Instantiate(laser1, transform.position + new Vector3(2.5f,0,0), laser2.transform.rotation);
                 break;
             case 3:
                 anim.SetTrigger("TrigAttack1");
@@ -294,6 +298,7 @@ public class snailControler : MonoBehaviour {
                 break;
             case 5:
                 anim.SetTrigger("TrigAttack1");
+                Instantiate(laser2, transform.position + new Vector3(2.5f, 0, 0), laser2.transform.rotation);            
                 break;
 
         }
