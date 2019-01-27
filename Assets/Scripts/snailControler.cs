@@ -20,6 +20,8 @@ public class snailControler : MonoBehaviour {
     [SerializeField] string[] skillsLeft;
     [SerializeField] string[] skillsRight;
     [SerializeField] public string LastSkil = "-";
+
+    [SerializeField] GameObject FireParticle;
     public int[] skillsStatus;
     float leftX, leftY;
     float rightX, rightY;
@@ -204,6 +206,11 @@ public class snailControler : MonoBehaviour {
                 if (GameStateManager.Singleton.OpponentHp > 0)
                 {
                     Instantiate(EnemyHurtParticle, new Vector3(4f, 2f, 0f), EnemyHurtParticle.transform.rotation);
+                }
+
+                if (LastSkil == "Skill nr 3")
+                {
+                    Instantiate(FireParticle, FireParticle.transform.position, FireParticle.transform.rotation);
                 }
                 
 
