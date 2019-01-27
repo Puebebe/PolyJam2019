@@ -23,7 +23,7 @@ public class GaiaScript : MonoBehaviour {
         if (delay < 0)
         {
             float rnd = Random.Range(0f, 1f);
-            if (rnd > 0.6f)
+            if (rnd > 0.65f)
             {
                 BigAttack();
             }
@@ -43,9 +43,9 @@ public class GaiaScript : MonoBehaviour {
     public void BigAttack()
     {        
         anim.SetTrigger("DeadTrig");
-        float rndDelay = Random.Range(0, 1);
+        float rndDelay = Random.Range(0f, 1.0f);
         Sequence mySequence = DOTween.Sequence();
-        mySequence.AppendInterval(0.25f);
+        mySequence.AppendInterval(0.35f);
         mySequence.OnComplete(SpawnBigWave);
         delay = attackTimmer + rndDelay;
     }
@@ -53,7 +53,7 @@ public class GaiaScript : MonoBehaviour {
     public void StartAttack()
     {
         anim.SetTrigger("AttackTrig");
-        float rndDelay = Random.Range(0, 1);
+        float rndDelay = Random.Range(0f, 1.0f);
         Sequence mySequence = DOTween.Sequence();
         mySequence.AppendInterval(0.25f);
         mySequence.OnComplete(SpawnWave);
@@ -69,9 +69,6 @@ public class GaiaScript : MonoBehaviour {
 
     public void SpawnBigWave()
     {
-        Instantiate(attack1Prefab, transform.position, attack1Prefab.transform.rotation);
-        Instantiate(attack1Prefab, transform.position, attack1Prefab.transform.rotation);
-        Instantiate(attack1Prefab, transform.position, attack1Prefab.transform.rotation);
         Instantiate(attack1Prefab, transform.position, attack1Prefab.transform.rotation);
         Instantiate(attack1Prefab, transform.position, attack1Prefab.transform.rotation);
         Instantiate(attack1Prefab, transform.position, attack1Prefab.transform.rotation);
