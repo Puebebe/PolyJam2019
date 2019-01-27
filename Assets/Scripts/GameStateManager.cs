@@ -157,7 +157,15 @@ public class GameStateManager : MonoBehaviour {
   
         foreach (var content in FixedContent)
         {
-           content.SetActive(!noUi);
+            try
+            {
+                content.SetActive(!noUi);
+            }
+            catch (System.Exception)
+            {
+                
+            }
+           
         }             
 
         currentlySpawnedObjects.Add(Instantiate(toSpawn, toSpawn.transform.position, toSpawn.transform.rotation));
