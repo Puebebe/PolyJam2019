@@ -22,6 +22,7 @@ public class snailControler : MonoBehaviour {
     [SerializeField] string[] skillsRight;
     [SerializeField] public string LastSkil = "-";
     [SerializeField] GameObject FireParticle;
+    [SerializeField] GameObject audioJump;
 
     public int[] skillsStatus;
     float leftX, leftY;
@@ -50,7 +51,7 @@ public class snailControler : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (Input.GetButton("Fire2"))
+        if (Input.GetButton("Fire2") || Input.GetKey(KeyCode.K))
         {
             int OpponentHp = GameStateManager.Singleton.OpponentHp;
             GameStateManager.Singleton.OpponentHp = OpponentHp - 100;
@@ -134,6 +135,7 @@ public class snailControler : MonoBehaviour {
 
     void Jump()
     {
+        Instantiate(audioJump);
         anim.SetTrigger("TrigJump");
         jumpActualPower = jumpPower;
         jump = true;
