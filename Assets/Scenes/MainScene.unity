@@ -3711,7 +3711,7 @@ GameObject:
   - component: {fileID: 977765364}
   - component: {fileID: 977765363}
   m_Layer: 0
-  m_Name: Intro-export
+  m_Name: Intro
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

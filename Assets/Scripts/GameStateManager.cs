@@ -123,6 +123,15 @@ public class GameStateManager : MonoBehaviour {
     IEnumerator DestroyIntro()
     {
         yield return new WaitForSecondsRealtime(8f);
+        if (GameObject.FindObjectOfType<VideoPlayer>() != null)
+        {
+            Destroy(GameObject.FindObjectOfType<VideoPlayer>().gameObject);
+            NextScene();
+        }   
+    }
+
+    public void skipIntro()
+    {
         Destroy(GameObject.FindObjectOfType<VideoPlayer>().gameObject);
         NextScene();
     }
