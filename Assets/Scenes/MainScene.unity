@@ -345,6 +345,9 @@ MonoBehaviour:
   - {fileID: 92167075}
   - {fileID: 1347566342}
   player: {fileID: 92167080}
+  startPlayerHP: 60
+  startOpponentHP: 10
+  levelHPOpponentMultiplier: 20
   EnemyHurtParticle: {fileID: 1511951793264770, guid: 478390a24f5023b40be4ffdeca7b3963,
     type: 2}
   ScenesArray:
@@ -726,7 +729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67b676f2b9051214782f3468520ecc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 50
+  baseDamage: 10
   unlockedSkills: 1
   isUntouchable: 0
   anim: {fileID: 389748190}

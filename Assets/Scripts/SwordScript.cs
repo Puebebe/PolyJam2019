@@ -23,8 +23,4 @@ public class SwordScript : MonoBehaviour
             Destroy(this.gameObject, maxlifeTime);
         }
     }
-
-    void Update()
-    {            
-    }
 }
