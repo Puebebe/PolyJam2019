@@ -71,6 +71,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4983290283990566}
   - component: {fileID: 328335453404696318}
+  - component: {fileID: 114204030740424100}
   m_Layer: 0
   m_Name: outrohd
   m_TagString: Untagged
@@ -422,6 +423,17 @@ MonoBehaviour:
   m_meshFilter: {fileID: 33413720834119568}
   m_boxCollider: {fileID: 0}
   m_TextComponent: {fileID: 114378263512595316}
+--- !u!114 &114204030740424100
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1347978602012342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c25385a3d20ae44ab58984018a86a18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114254015281500996
 MonoBehaviour:
   m_ObjectHideFlags: 1
