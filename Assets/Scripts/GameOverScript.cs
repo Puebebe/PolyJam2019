@@ -8,12 +8,27 @@ public class GameOverScript : MonoBehaviour {
     GameObject camera;
     Canvas canvas;
 
+    public static bool isGameOver = false;
+
     Vector3 cameraStartpos;
 
     public TMPro.TextMeshPro respawnText;
     int delay = 3;
 
-	void Start () {
+    private void Awake()
+    {
+        if (isGameOver)
+        {
+            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
+        }
+        else
+        {
+            isGameOver = true;
+        }
+    }
+
+    void Start () {
         //assign
         camera = Camera.main.gameObject;
         canvas = UIManager.Singleton.gameObject.GetComponent<Canvas>();
@@ -43,6 +58,7 @@ public class GameOverScript : MonoBehaviour {
         //recover
         camera.transform.position = cameraStartpos;
         canvas.enabled = true;
+        isGameOver = false;
         GameStateManager.Singleton.RestartScene();
     }
 }
