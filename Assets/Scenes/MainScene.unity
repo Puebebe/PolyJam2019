@@ -746,6 +746,8 @@ MonoBehaviour:
   - 34213423
   - 42111144
   LastSkil: 
+  FireParticle: {fileID: 1025575200687480, guid: 7882a1c9bcc3dc2428a6a2a7429e00aa,
+    type: 2}
   skillsStatus: 
 --- !u!50 &92167081
 Rigidbody2D:
