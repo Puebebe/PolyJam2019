@@ -755,6 +755,7 @@ MonoBehaviour:
   FireParticle: {fileID: 1025575200687480, guid: 7882a1c9bcc3dc2428a6a2a7429e00aa,
     type: 2}
   audioJump: {fileID: 1726025693813400, guid: c861532e12d86f74db0a419ee8c11b47, type: 2}
+  blockJump: {fileID: 1726025693813400, guid: 7d9323793614fa14aad59a165a2fbd85, type: 2}
   skillsStatus: 
 --- !u!50 &92167081
 Rigidbody2D:

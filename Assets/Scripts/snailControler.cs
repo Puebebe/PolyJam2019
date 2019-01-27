@@ -23,6 +23,7 @@ public class snailControler : MonoBehaviour {
     [SerializeField] public string LastSkil = "-";
     [SerializeField] GameObject FireParticle;
     [SerializeField] GameObject audioJump;
+    [SerializeField] GameObject blockJump;
 
     public int[] skillsStatus;
     float leftX, leftY;
@@ -141,8 +142,15 @@ public class snailControler : MonoBehaviour {
         jump = true;
     }
 
+    GameObject blockaudio;
+
     private void Block()
     {
+        if (blockaudio == null)
+        {
+            blockaudio = Instantiate(blockJump);
+        }
+        
         anim.SetBool("BoolBlock", true);
     }
 
