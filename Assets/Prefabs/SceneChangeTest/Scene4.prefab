@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e6963f28d7cc424198438f3737c7d97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackTimmer: 2.5
+  attackTimmer: 3.2
   atackSpawnPos: {fileID: 4077776072196284}
   anim: {fileID: 95254470693954476}
   attack1Prefab: {fileID: 1826957772525286, guid: 7aed7f64226d146419d80c5f0fc88a8d,
