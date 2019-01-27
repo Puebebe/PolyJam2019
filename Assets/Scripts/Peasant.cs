@@ -34,12 +34,19 @@ public class Peasant : MonoBehaviour
 
     public void StartAttack()
     {
-        anim.SetTrigger("AttackTrig");
-        float rndDelay = Random.Range(0, 1);
+        anim.SetTrigger("PrepTrig");
+        float rndDelay = Random.Range(0f, 1.5f);
         Sequence mySequence = DOTween.Sequence();
+        mySequence.AppendInterval(1.30f);
+        mySequence.AppendCallback(AttackAnimation);
         mySequence.AppendInterval(0.25f);
         mySequence.OnComplete(SpawnWave);
         delay = attackTimmer + rndDelay;
+    }
+
+    public void AttackAnimation()
+    {
+        anim.SetTrigger("AttackTrig");
     }
 
     public void SpawnWave()
