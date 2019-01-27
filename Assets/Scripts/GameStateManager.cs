@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class GameStateManager : MonoBehaviour {
 
@@ -116,6 +117,13 @@ public class GameStateManager : MonoBehaviour {
     //start current scene
     private void Start()
     {
+        StartCoroutine(DestroyIntro());
+    }
+
+    IEnumerator DestroyIntro()
+    {
+        yield return new WaitForSecondsRealtime(8f);
+        Destroy(GameObject.FindObjectOfType<VideoPlayer>().gameObject);
         NextScene();
     }
 
