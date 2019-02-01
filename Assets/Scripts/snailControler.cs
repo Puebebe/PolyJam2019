@@ -296,19 +296,15 @@ public class snailControler : MonoBehaviour {
                 break;
             case 2:
                 anim.SetTrigger("TrigAttack1");
-                Instantiate(laser1, transform.position + new Vector3(2.5f,0,0), laser2.transform.rotation);
+                Instantiate(laser1, transform.position + new Vector3(2.5f, 0, 0), laser1.transform.rotation);
                 break;
             case 3:
                 anim.SetTrigger("TrigAttack1");
                 break;
             case 4:
                 anim.SetTrigger("TrigAttack1");
-                break;
-            case 5:
-                anim.SetTrigger("TrigAttack1");
                 Instantiate(laser2, transform.position + new Vector3(2.5f, 0, 0), laser2.transform.rotation);            
                 break;
-
         }
 
     }

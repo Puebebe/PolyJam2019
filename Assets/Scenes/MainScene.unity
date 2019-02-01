@@ -733,7 +733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laser1: {fileID: 1381037869822278, guid: fcc705758379e924187d687a461bd5f6, type: 2}
-  laser2: {fileID: 1647871219456186, guid: a479bcddbf792044facba825c3be8af6, type: 2}
+  laser2: {fileID: 1381037869822278, guid: 1985a8d2ec12dc64eb134c6643e8b528, type: 2}
   baseDamage: 10
   unlockedSkills: 1
   isUntouchable: 0
