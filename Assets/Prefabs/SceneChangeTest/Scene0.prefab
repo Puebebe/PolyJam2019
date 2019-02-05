@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 95584447970002578}
   - component: {fileID: 114513726057869416}
   m_Layer: 0
-  m_Name: gamepad_color2
+  m_Name: TutorialSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -322,7 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e75a240081ba3954d8d443fac1cc1fef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 2
+  delay: 3
 --- !u!114 &114765318186966096
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -334,7 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e75a240081ba3954d8d443fac1cc1fef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 2
+  delay: 3
 --- !u!212 &212223475090959058
 SpriteRenderer:
   m_ObjectHideFlags: 1
