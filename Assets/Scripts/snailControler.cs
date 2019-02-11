@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
@@ -40,22 +40,23 @@ public class snailControler : MonoBehaviour {
     private GameObject EnemyHurtParticle;
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
         EnemyHurtParticle = GameStateManager.Singleton.EnemyHurtParticle;
         skillsStatus = new int[skillsLeft.Length];
         for (int i = 0; i < skillsStatus.Length; i++)
-            {
+        {
             skillsStatus[i] = 0;
-            }
+        }
         startPos = this.gameObject.transform.localPosition;
         startScale = this.gameObject.transform.localScale;
         jump = false;
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update ()
     {
-        if (Input.GetButton("Fire2") || Input.GetKey(KeyCode.K))
+        if (Input.GetKey(KeyCode.BackQuote) && Input.GetKey(KeyCode.K))
         {
             int OpponentHp = GameStateManager.Singleton.OpponentHp;
             GameStateManager.Singleton.OpponentHp = OpponentHp - 100;
@@ -70,13 +71,15 @@ public class snailControler : MonoBehaviour {
         }
         else
         {
-            leftX = Mathf.Clamp(Input.GetAxis("HorizontalL") * 5f, -1f, 1f);
-            leftY = Mathf.Clamp(Input.GetAxis("VerticalL") * 5f, -1f, 1f);
-            rightX = Mathf.Clamp(Input.GetAxis("HorizontalR") * 5f, -1f, 1f);
-            rightY = Mathf.Clamp(Input.GetAxis("VerticalR") * 5f, -1f, 1f);
+            leftX = Math.Sign(Input.GetAxis("HorizontalL"));
+            leftY = Math.Sign(Input.GetAxis("VerticalL"));
+            rightX = Math.Sign(Input.GetAxis("HorizontalR"));
+            rightY = Math.Sign(Input.GetAxis("VerticalR"));
         }
 
-        if(jump)
+        //Debug.Log(anim.name);
+
+        if (jump)
         {            
             this.gameObject.transform.localPosition += new Vector3(0, jumpActualPower, 0);
             jumpActualPower -= Time.deltaTime;
@@ -102,6 +105,7 @@ public class snailControler : MonoBehaviour {
         {
             Normal();
         }
+
         if(HitDelay > 0)
         {
             HitDelay -= Time.deltaTime;
@@ -140,7 +144,6 @@ public class snailControler : MonoBehaviour {
     void Jump()
     {
         Instantiate(audioJump);
-        anim.SetTrigger("TrigJump");
         jumpActualPower = jumpPower;
         jump = true;
     }

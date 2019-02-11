@@ -1792,6 +1792,10 @@ Prefab:
       propertyPath: anim
       value: 
       objectReference: {fileID: 2070838677}
+    - target: {fileID: 1371974119844030, guid: afccd7184dec56f449b5c31f8f2c1fd8, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 95778267528312810, guid: afccd7184dec56f449b5c31f8f2c1fd8, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: afccd7184dec56f449b5c31f8f2c1fd8, type: 2}
@@ -3785,6 +3789,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf1f54208bb63494cbe3d087da16e159, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  snailController: {fileID: 92167080}
+  codesStatus: 
 --- !u!1 &978973473
 GameObject:
   m_ObjectHideFlags: 0
