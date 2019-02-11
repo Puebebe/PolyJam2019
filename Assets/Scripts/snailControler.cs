@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
@@ -149,7 +149,7 @@ public class snailControler : MonoBehaviour {
 
     private void Block()
     {
-        if (blockaudio == null)
+        if (blockaudio == null && !anim.GetCurrentAnimatorStateInfo(0).IsName("Block"))
         {
             blockaudio = Instantiate(blockJump);
         }
