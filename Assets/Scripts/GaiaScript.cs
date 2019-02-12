@@ -3,19 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GaiaScript : MonoBehaviour {
-    [SerializeField] float attackTimmer = 2;
-    [SerializeField] Transform atackSpawnPos;
-
+public class GaiaScript : MonoBehaviour
+{
+    [SerializeField] float attackTimer = 2;
     [SerializeField] Animator anim;
-
     [SerializeField] GameObject attack1Prefab;
 
     private float delay = 0;
-    private float atackDelay = 0.25f;
-    private void Start()
+    private float attackDelay = 0.25f;
+    private float bigAttackDelay = 0.35f;
+
+    void Start()
     {
-        delay = attackTimmer;
+        delay = attackTimer;
     }
 
     void Update()
@@ -30,9 +30,7 @@ public class GaiaScript : MonoBehaviour {
             else
             {
                 StartAttack();
-
             }
-            
         }
         else
         {
@@ -45,9 +43,9 @@ public class GaiaScript : MonoBehaviour {
         anim.SetTrigger("DeadTrig");
         float rndDelay = Random.Range(0f, 1.0f);
         Sequence mySequence = DOTween.Sequence();
-        mySequence.AppendInterval(0.35f);
+        mySequence.AppendInterval(bigAttackDelay);
         mySequence.OnComplete(SpawnBigWave);
-        delay = attackTimmer + rndDelay;
+        delay = attackTimer + rndDelay;
     }
 
     public void StartAttack()
@@ -55,30 +53,19 @@ public class GaiaScript : MonoBehaviour {
         anim.SetTrigger("AttackTrig");
         float rndDelay = Random.Range(0f, 1.0f);
         Sequence mySequence = DOTween.Sequence();
-        mySequence.AppendInterval(0.25f);
+        mySequence.AppendInterval(attackDelay);
         mySequence.OnComplete(SpawnWave);
-        delay = attackTimmer + rndDelay;
+        delay = attackTimer + rndDelay;
     }
 
     public void SpawnWave()
     {
-        GameObject Created = Instantiate(attack1Prefab, transform.position, attack1Prefab.transform.rotation);
-        //Created.transform.position = Vector3.zero;
+        Instantiate(attack1Prefab, transform.position, attack1Prefab.transform.rotation);
     }
-
 
     public void SpawnBigWave()
     {
-        Instantiate(attack1Prefab, transform.position, attack1Prefab.transform.rotation);
-        Instantiate(attack1Prefab, transform.position, attack1Prefab.transform.rotation);
-        Instantiate(attack1Prefab, transform.position, attack1Prefab.transform.rotation);
-        Instantiate(attack1Prefab, transform.position, attack1Prefab.transform.rotation);
-        Instantiate(attack1Prefab, transform.position, attack1Prefab.transform.rotation);
-        Instantiate(attack1Prefab, transform.position, attack1Prefab.transform.rotation);
-        Instantiate(attack1Prefab, transform.position, attack1Prefab.transform.rotation);
-        Instantiate(attack1Prefab, transform.position, attack1Prefab.transform.rotation);
-        Instantiate(attack1Prefab, transform.position, attack1Prefab.transform.rotation);
-        Instantiate(attack1Prefab, transform.position, attack1Prefab.transform.rotation);
-        Instantiate(attack1Prefab, transform.position, attack1Prefab.transform.rotation);
+        for (int i = 0; i < 11; i++)
+            Instantiate(attack1Prefab, transform.position, attack1Prefab.transform.rotation);
     }
 }

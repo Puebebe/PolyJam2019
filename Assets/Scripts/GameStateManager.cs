@@ -8,7 +8,7 @@ public class GameStateManager : MonoBehaviour {
     public static GameStateManager Singleton;
 
     [SerializeField] private GameObject[] FixedContent;
-    [SerializeField] public snailControler player;
+    [SerializeField] public SnailController player;
     [SerializeField] public int startPlayerHP=100, startOpponentHP=100, levelHPOpponentMultiplier=10;
 
     [SerializeField] public GameObject EnemyHurtParticle;
@@ -35,7 +35,7 @@ public class GameStateManager : MonoBehaviour {
         }
         set
         {
-            if (value <= 0)
+            if (_playerHp > 0 && value <= 0)
             {
                 
                 PlayerDeath();

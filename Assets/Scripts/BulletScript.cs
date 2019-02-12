@@ -29,7 +29,7 @@ public class BulletScript : MonoBehaviour {
     {
         if (collision.gameObject.name == "Player")
         {
-            collision.gameObject.GetComponent<snailControler>().ApplyDamage(damage);
+            collision.gameObject.GetComponent<SnailController>().ApplyDamage(damage);
 
             Destroy(this.gameObject);
             //destroy can wait a couple of frames before actually destroying the object, deactivating the bullet to avoid multiple damage calls from single bullet

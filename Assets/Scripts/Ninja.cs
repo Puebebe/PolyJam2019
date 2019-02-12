@@ -2,22 +2,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class Peasant : MonoBehaviour
+public class Ninja : MonoBehaviour
 {
-
-    [SerializeField] float attackTimmer = 2;
-    [SerializeField] Transform atackSpawnPos;
-    
+    [SerializeField] float attackTimer = 2;
+    [SerializeField] Transform attackSpawnPos;
     [SerializeField] Animator anim;
-
     [SerializeField] GameObject attack1Prefab;
 
     private float delay = 0;
-    private float atackDelay = 0.25f;
-    private void Start()
+    private float attackDelay = 0.25f;
+
+    void Start()
     {
-        delay = attackTimmer;
+        delay = attackTimer;
     }
 
     void Update()
@@ -39,9 +38,9 @@ public class Peasant : MonoBehaviour
         Sequence mySequence = DOTween.Sequence();
         mySequence.AppendInterval(1.30f);
         mySequence.AppendCallback(AttackAnimation);
-        mySequence.AppendInterval(0.25f);
+        mySequence.AppendInterval(attackDelay);
         mySequence.OnComplete(SpawnWave);
-        delay = attackTimmer + rndDelay;
+        delay = attackTimer + rndDelay;
     }
 
     public void AttackAnimation()
@@ -51,7 +50,7 @@ public class Peasant : MonoBehaviour
 
     public void SpawnWave()
     {    
-        GameObject Created = Instantiate(attack1Prefab, atackSpawnPos, true);  
+        Instantiate(attack1Prefab, attackSpawnPos, true);
     }
 }
 

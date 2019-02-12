@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Serialization;
 
-public class snailControler : MonoBehaviour {
-
-    public GameObject laser1;
-    public GameObject laser2;
-
+public class SnailController : MonoBehaviour
+{
     public int baseDamage = 10;
     public int unlockedSkills = 1;
     public bool isUntouchable = false;
@@ -23,12 +21,16 @@ public class snailControler : MonoBehaviour {
     [SerializeField] float animationHitDelay;
     [SerializeField] string[] skillsLeft;
     [SerializeField] string[] skillsRight;
-    [SerializeField] public string LastSkil = "-";
+    [SerializeField] public int[] skillsStatus;
+    [SerializeField] public string lastSkill = "-";
+    [Header("Attacks - particles")]
+    [SerializeField] GameObject laser1;
     [SerializeField] GameObject FireParticle;
+    [SerializeField] GameObject laser2;
+    [Header("Sounds")]
     [SerializeField] GameObject audioJump;
-    [SerializeField] GameObject blockJump;
+    [SerializeField] GameObject audioBlock;
 
-    public int[] skillsStatus;
     float leftX, leftY;
     float rightX, rightY;
     Vector3 startPos;
@@ -36,8 +38,8 @@ public class snailControler : MonoBehaviour {
     bool jump;
     float jumpActualPower;
     float skillDelay;
-    float HitDelay;
-    private GameObject EnemyHurtParticle;
+    float hitDelay;
+    GameObject EnemyHurtParticle;
 
     // Use this for initialization
     void Start ()
@@ -77,39 +79,10 @@ public class snailControler : MonoBehaviour {
             rightY = Math.Sign(Input.GetAxis("VerticalR"));
         }
 
-        //Debug.Log(anim.name);
-
-        if (jump)
-        {            
-            this.gameObject.transform.localPosition += new Vector3(0, jumpActualPower, 0);
-            jumpActualPower -= Time.deltaTime;
-            if(jumpActualPower <= - jumpPower)
-            {
-                jump = false;
-                Normal();
-            }
-        }
-        else if (leftY == 1 && rightY == 1)
+        if (hitDelay > 0)
         {
-            Jump();
-        }
-        else if (leftY == -1 && rightY == -1)
-        {
-            Dodge();
-        }
-        else if (leftX == -1 && rightX == -1)
-        {
-            Block();
-        }
-        else
-        {
-            Normal();
-        }
-
-        if(HitDelay > 0)
-        {
-            HitDelay -= Time.deltaTime;
-            if (HitDelay <= 0)
+            hitDelay -= Time.deltaTime;
+            if (hitDelay <= 0)
             {
                 for (int i = 0; i < skillsStatus.Length; i++)
                 {
@@ -129,11 +102,45 @@ public class snailControler : MonoBehaviour {
                 skillsStatus[i] = 0;
             }
             //Debug.Log("-----------------------");
-            LastSkil = "";
+            lastSkill = "";
             skillDelay = skillDelayTime;
         }
-    }
 
+        if (jump)
+        {            
+            this.gameObject.transform.localPosition += new Vector3(0, jumpActualPower, 0);
+            jumpActualPower -= Time.deltaTime;
+            if(jumpActualPower <= - jumpPower)
+            {
+                jump = false;
+                Normal();
+            }
+        }
+        else if (leftY == 1 && rightY == 1)
+        {
+            bool isBusy = false;
+            for (int i = 0; i < unlockedSkills; i++)
+            {
+                if (skillsStatus[i] > 1)
+                    isBusy = true;
+            }
+            
+            if (!isBusy && anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+                Jump();
+        }
+        else if (leftY == -1 && rightY == -1)
+        {
+            Dodge();
+        }
+        else if (leftX == -1 && rightX == -1)
+        {
+            Block();
+        }
+        else
+        {
+            Normal();
+        }
+    }
 
     void Dodge()
     {
@@ -150,11 +157,11 @@ public class snailControler : MonoBehaviour {
 
     GameObject blockaudio;
 
-    private void Block()
+    void Block()
     {
         if (blockaudio == null && !anim.GetCurrentAnimatorStateInfo(0).IsName("Block"))
         {
-            blockaudio = Instantiate(blockJump);
+            blockaudio = Instantiate(audioBlock);
         }
         
         anim.SetBool("BoolBlock", true);
@@ -166,6 +173,7 @@ public class snailControler : MonoBehaviour {
     {
         this.gameObject.transform.localScale = startScale;
         this.gameObject.transform.localPosition = startPos;
+
         if (fixPosition)
         {
             anim.gameObject.transform.localPosition = new Vector3(0.654f, 0f, 0f);
@@ -178,7 +186,7 @@ public class snailControler : MonoBehaviour {
     {
         int LeftStatus = 0;
         int RightStatus = 0;
-        bool LeftOK=false, RightOK=false;
+        bool LeftOK = false, RightOK = false;
 
         if (Mathf.Round(leftX) == 1)
             LeftStatus = 3;
@@ -197,8 +205,8 @@ public class snailControler : MonoBehaviour {
         else if (Mathf.Round(rightY) == -1)
             RightStatus = 4;
 
-        //Debug.Log("Right Status " + RightStatus);
         //Debug.Log("Left Status " + LeftStatus);
+        //Debug.Log("Right Status " + RightStatus);
         for (int i = 0; i < unlockedSkills; i++)
         {
             LeftOK = false;
@@ -208,83 +216,50 @@ public class snailControler : MonoBehaviour {
             {
                 LeftOK = true;
             }
-            else if(LeftStatus != 0 && skillsStatus[i] != 0 && skillsLeft[i][skillsStatus[i]-1] - '0' != LeftStatus)
+            else if (LeftStatus != 0 && skillsStatus[i] != 0 && skillsLeft[i][skillsStatus[i] - 1] - '0' != LeftStatus)
             {
                 skillsStatus[i] = 0;
             }
 
-            if(skillsRight[i][skillsStatus[i]] - '0' == RightStatus)
+            if (skillsRight[i][skillsStatus[i]] - '0' == RightStatus)
             {
                 RightOK = true;
             }
-            else if(RightStatus != 0 && skillsStatus[i] != 0 && skillsRight[i][skillsStatus[i] - 1] - '0' != RightStatus)
+            else if (RightStatus != 0 && skillsStatus[i] != 0 && skillsRight[i][skillsStatus[i] - 1] - '0' != RightStatus)
             {
                 skillsStatus[i] = 0;
             }
-            if(RightOK && LeftOK)
+
+            if (RightOK && LeftOK)
             {
                 skillsStatus[i]++;
                 skillDelay = skillDelayTime;
             }
-            if(skillsStatus[i] == skillsLeft[i].Length)
-            {
-                Debug.Log("<b>" + i + " wykonano</b>");
-                LastSkil = "Skill nr " + i;
 
-                #region Instantiate Particles
+            if (skillsStatus[i] == skillsLeft[i].Length)
+            {
+                Debug.Log("wykonano atak nr " + (i + 1));
+                lastSkill = "Skill nr " + i;
 
                 if (GameStateManager.Singleton.OpponentHp > 0)
                 {
                     Instantiate(EnemyHurtParticle, new Vector3(4f, 2f, 0f), EnemyHurtParticle.transform.rotation);
                 }
 
-                if (LastSkil == "Skill nr 3")
-                {
-                    Instantiate(FireParticle, FireParticle.transform.position, FireParticle.transform.rotation);
-                }
-
-
-                #endregion
-
-                #region bayblade
-
-                Debug.Log(LastSkil);
-                if (LastSkil == "Skill nr 1")
-                {
-                    Debug.Log("test");
-                    fixPosition = false;
-                    Sequence baybladeSeq = DOTween.Sequence();
-                    baybladeSeq.Append(anim.gameObject.transform.DOMove(new Vector3(-4f + (2.1f * 4.5f), -0.2f, 0f), 0.8f));
-                    baybladeSeq.Append(anim.gameObject.transform.DOMove(new Vector3(-4f + (0.654f * 4.5f), -0.2f, 0f), 0.5f));
-
-                    StartCoroutine(forceanimationHeight());
-                }
-                
-
-                #endregion
-
                 int OpponentHp = GameStateManager.Singleton.OpponentHp;
                 int rnd = UnityEngine.Random.Range(-i-1, i+2);
                 int damage  = (i + 1) * baseDamage + rnd;
                 GameStateManager.Singleton.OpponentHp = OpponentHp - damage;
-                HitDelay = animationHitDelay;
+                hitDelay = animationHitDelay;
                 for (int x = 0; x < skillsStatus.Length; x++)
                 {
-                    if(x != i)
+                    if (x != i)
                         skillsStatus[x] = 0;
                 }
 
                 UpdateSnailAnimation(i);
             }
         }
-       
-    }
-
-    IEnumerator forceanimationHeight()
-    {
-        yield return new WaitForSecondsRealtime(1.4f);
-        fixPosition = true;
-        
     }
 
     void UpdateSnailAnimation(int i)
@@ -295,21 +270,35 @@ public class snailControler : MonoBehaviour {
                 anim.SetTrigger("TrigAttack1");
                 break;
             case 1:
-                anim.SetTrigger("TrigBayblade");
+                BeybladeAttack();
+                anim.SetTrigger("TrigBeyblade");
                 break;
             case 2:
-                anim.SetTrigger("TrigAttack1");
                 Instantiate(laser1, transform.position + new Vector3(2.5f, 0, 0), laser1.transform.rotation);
                 break;
             case 3:
-                anim.SetTrigger("TrigAttack1");
+                Instantiate(FireParticle, FireParticle.transform.position + new Vector3(0.5f, 0, 0), FireParticle.transform.rotation);
                 break;
             case 4:
-                anim.SetTrigger("TrigAttack1");
                 Instantiate(laser2, transform.position + new Vector3(2.5f, 0, 0), laser2.transform.rotation);            
                 break;
         }
+    }
 
+    void BeybladeAttack()
+    {
+        fixPosition = false;
+        Sequence beybladeSeq = DOTween.Sequence();
+        beybladeSeq.Append(anim.gameObject.transform.DOMove(new Vector3(-4f + (2.1f * 4.5f), -0.2f, 0f), 0.8f));
+        beybladeSeq.Append(anim.gameObject.transform.DOMove(new Vector3(-4f + (0.654f * 4.5f), -0.2f, 0f), 0.5f));
+
+        StartCoroutine(forceAnimationHeight());
+    }
+
+    IEnumerator forceAnimationHeight()
+    {
+        yield return new WaitForSecondsRealtime(1.4f);
+        fixPosition = true;
     }
 
     public void ApplyDamage(int damage)

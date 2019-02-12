@@ -5,12 +5,11 @@ using TMPro;
 
 public class GameOverScript : MonoBehaviour {
 
-    GameObject camera;
+    GameObject cam;
+    Vector3 cameraStartPos;
     Canvas canvas;
 
     public static bool isGameOver = false;
-
-    Vector3 cameraStartpos;
 
     public TMPro.TextMeshPro respawnText;
     int delay = 3;
@@ -30,19 +29,19 @@ public class GameOverScript : MonoBehaviour {
 
     void Start () {
         //assign
-        camera = Camera.main.gameObject;
+        cam = Camera.main.gameObject;
         canvas = UIManager.Singleton.gameObject.GetComponent<Canvas>();
 
-        cameraStartpos = camera.transform.position;
+        cameraStartPos = cam.transform.position;
 
         //display
-        camera.transform.position += Vector3.up * 20f;
+        cam.transform.position += Vector3.up * 20f;
         canvas.enabled = false;
 
-        StartCoroutine(delayCouroutine());
+        StartCoroutine(delayCoroutine());
 	}
 
-    IEnumerator delayCouroutine()
+    IEnumerator delayCoroutine()
     {
         while(delay > 0)
         {
@@ -56,7 +55,7 @@ public class GameOverScript : MonoBehaviour {
     private void OnDestroy()
     {
         //recover
-        camera.transform.position = cameraStartpos;
+        cam.transform.position = cameraStartPos;
         canvas.enabled = true;
         isGameOver = false;
         GameStateManager.Singleton.RestartScene();

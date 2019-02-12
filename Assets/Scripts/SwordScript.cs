@@ -18,7 +18,7 @@ public class SwordScript : MonoBehaviour
     {
         if (col.gameObject.name == "Player")
         {
-            col.gameObject.GetComponent<snailControler>().ApplyDamage(damage);
+            col.gameObject.GetComponent<SnailController>().ApplyDamage(damage);
 
             Destroy(this.gameObject, maxlifeTime);
         }

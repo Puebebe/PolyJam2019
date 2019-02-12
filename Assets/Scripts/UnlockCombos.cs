@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UnlockCombos : MonoBehaviour {
 
     public static UnlockCombos Singleton;
-    public snailControler Player;
+    public SnailController Player;
     public ImpScript imp;
     int waitForCombo = 1;
     public bool teach = false;
@@ -28,7 +28,7 @@ public class UnlockCombos : MonoBehaviour {
     {
         if (Player == null)
         {
-            Player = GameObject.FindObjectOfType<snailControler>();
+            Player = GameObject.FindObjectOfType<SnailController>();
         }
         
     }
@@ -73,7 +73,7 @@ public class UnlockCombos : MonoBehaviour {
                 glowing = true;
                 StartCoroutine(tutorialGlow());
             }
-            if (Player.LastSkil == ("Skill nr " + waitForCombo))
+            if (Player.lastSkill == ("Skill nr " + waitForCombo))
             {
                 teach = false;
                 glowing = true;

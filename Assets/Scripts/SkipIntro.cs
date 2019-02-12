@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SkipIntro : MonoBehaviour
 {
-    [SerializeField] snailControler snailController;
+    [SerializeField] SnailController snailController;
     string[] codesLeft = { "1014042323BA" };
     string[] codesRight = { "1014042323BA" };
     public int[] codesStatus;

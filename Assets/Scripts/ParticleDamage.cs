@@ -10,7 +10,7 @@ public class ParticleDamage : MonoBehaviour {
     {
         if (other.name == "Player")
         {
-            other.GetComponent<snailControler>().ApplyDamage(damagePerParticle);
+            other.GetComponent<SnailController>().ApplyDamage(damagePerParticle);
         }
     }
 }

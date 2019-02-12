@@ -3,25 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Opponent : MonoBehaviour {
-
+public class Opponent : MonoBehaviour
+{
     [SerializeField] float SpawnMaxDelay = 3;
     [SerializeField] float SpawnMinDelay = 1;
-    [SerializeField] GameObject [] SpawnPos;
+    [SerializeField] GameObject[] SpawnPos;
     float delay;
 
     [SerializeField] Animator anim;
-
     [SerializeField] GameObject BulletPrefab;
 
-    private void Start()
+    void Start()
     {
         anim = GetComponent<Animator>();
         delay = SpawnMaxDelay;
     }
 
-    void Update () {
-		if(delay < 0)
+    void Update()
+    {
+        if (delay < 0)
         {
             anim.SetTrigger("AttackTrig");
             Sequence eggSequence = DOTween.Sequence();
@@ -35,8 +35,7 @@ public class Opponent : MonoBehaviour {
         {
             delay -= Time.deltaTime;
         }
-
-	}
+    }
 
     void SpawnEgg()
     {

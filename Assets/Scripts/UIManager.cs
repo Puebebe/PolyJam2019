@@ -72,11 +72,7 @@ public class UIManager : MonoBehaviour {
     public void UpdatePlayerHP(int hp)
     {
         PlayerHPList.Add(hp);
-        if (PlayerHPList.Count == 1)
-        {
-            InitalizePlayerHP();
-        }
-        else
+        if (PlayerHPList.Count != 1)
         {
             StartCoroutine(animateImage(PlayerHPRT, PlayerHPMaxSize, hp, PlayerHPList[PlayerHPList.Count - 2], PlayerHPList[0]));
         }
@@ -85,25 +81,10 @@ public class UIManager : MonoBehaviour {
     public void UpdateEnemyHP(int hp)
     {
         EnemyHPList.Add(hp);
-        if (EnemyHPList.Count == 1)
-        {
-            InitalizeEnemyHP();
-        }
-        else
+        if (EnemyHPList.Count != 1)
         {
             StartCoroutine(animateImage(EnemyHPRT, EnemyHPMaxSize, hp, EnemyHPList[EnemyHPList.Count - 2], EnemyHPList[0]));
         }
-    }
-
-    private void InitalizeEnemyHP()
-    {
-        Debug.Log("Inicjalizacja EnemyHP");
-    }
-
-    private void InitalizePlayerHP()
-    {
-        //obecnie gówno trzeba robić w inicjalizacji lul
-        Debug.Log("inicjalizacja PlayerHP");
     }
 
     IEnumerator animateImage(RectTransform img, int maxSize, int newHP, int oldHP, int maxHP)
@@ -130,15 +111,6 @@ public class UIManager : MonoBehaviour {
     {
         PlayerHPList.Add(PlayerHPList[PlayerHPList.Count - 1]);
         EnemyHPList.Add(EnemyHPList[EnemyHPList.Count - 1]);
-    }
-
-    int x = 0;
-
-    public void Test()
-    {
-        UpdatePlayerHP(100 - x);
-        UpdateEnemyHP(100 - x);
-        x += 20;
     }
 
     public void ClearHealthData()

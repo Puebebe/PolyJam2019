@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 4264507004952682}
   - component: {fileID: 114564515956597844}
   m_Layer: 0
-  m_Name: GameOverScreen(Clone)(Clone)
+  m_Name: GameOverScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -27,21 +27,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1119385750650686
-GameObject:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4077776072196284}
-  m_Layer: 5
-  m_Name: AttackSpawn
-  m_TagString: Untagged
-  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1176960148779882
 GameObject:
   m_ObjectHideFlags: 1
@@ -90,19 +75,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4077776072196284
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1119385750650686}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.29, y: 0.07, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4203877199940066}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4112732416747552
 Transform:
   m_ObjectHideFlags: 1
@@ -126,7 +98,6 @@ Transform:
   m_LocalPosition: {x: 4, y: 0, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4077776072196284}
   - {fileID: 4557454008578244}
   m_Father: {fileID: 4282209396265762}
   m_RootOrder: 0
@@ -157,7 +128,7 @@ Transform:
   m_LocalScale: {x: -8, y: 8, z: 1}
   m_Children: []
   m_Father: {fileID: 4203877199940066}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &95254470693954476
 Animator:
@@ -188,8 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e6963f28d7cc424198438f3737c7d97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackTimmer: 3.2
-  atackSpawnPos: {fileID: 4077776072196284}
+  attackTimer: 2
   anim: {fileID: 95254470693954476}
   attack1Prefab: {fileID: 1826957772525286, guid: 7aed7f64226d146419d80c5f0fc88a8d,
     type: 2}

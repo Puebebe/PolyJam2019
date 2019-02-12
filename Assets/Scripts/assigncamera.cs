@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 
-public class assigncamera : MonoBehaviour {
+public class AssignCamera : MonoBehaviour {
 
     private void Awake()
     {

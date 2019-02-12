@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PanelManager : MonoBehaviour {
 
     public static PanelManager Singleton;
 
-    [SerializeField] Color NormalArrowColor, ProgressArrowColor, NormalPanelColor, lockPanelColor;
+    [SerializeField] Color NormalArrowColor;
+    [SerializeField] Color ProgressArrowColor;
+    [SerializeField] Color NormalPanelColor;
+    [SerializeField] Color LockPanelColor;
     [SerializeField] GameObject Player;
     [SerializeField] public GameObject[] Panels;
 
@@ -29,8 +33,9 @@ public class PanelManager : MonoBehaviour {
 
     private void Start()
     {
-        SkillsStatus = Player.GetComponent<snailControler>().skillsStatus;
-        UnlockedSkils = Player.GetComponent<snailControler>().unlockedSkills;
+        SkillsStatus = Player.GetComponent<SnailController>().skillsStatus;
+        UnlockedSkils = Player.GetComponent<SnailController>().unlockedSkills;
+
         for (int i = 0; i < UnlockedSkils; i++) 
         {
             Panels[i].GetComponent<Image>().color = NormalPanelColor;
@@ -39,9 +44,10 @@ public class PanelManager : MonoBehaviour {
                 Panels[i].transform.GetChild(x).gameObject.SetActive(true);
             }
         }
+
         for (int i = UnlockedSkils; i < Panels.Length; i++)
         {
-            Panels[i].GetComponent<Image>().color = lockPanelColor;
+            Panels[i].GetComponent<Image>().color = LockPanelColor;
             for (int x = 0; x < Panels[i].transform.childCount; x++)
             {
                 Panels[i].transform.GetChild(x).gameObject.SetActive(false);
@@ -51,7 +57,7 @@ public class PanelManager : MonoBehaviour {
 
     private void Update()
     {
-        SkillsStatus = Player.GetComponent<snailControler>().skillsStatus;
+        SkillsStatus = Player.GetComponent<SnailController>().skillsStatus;
         for (int i = 0; i < UnlockedSkils; i++)
         {
             for (int x = 0; x < SkillsStatus[i]; x++) 
@@ -69,7 +75,4 @@ public class PanelManager : MonoBehaviour {
     {
         Start();
     }
-
-
-
 }

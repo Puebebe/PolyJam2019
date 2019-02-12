@@ -3,19 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GolemScript : MonoBehaviour {
-    [SerializeField] float attackTimmer = 2;
-    [SerializeField] Transform atackSpawnPos;
-
+public class GolemScript : MonoBehaviour
+{
+    [SerializeField] float attackTimer = 2;
     [SerializeField] Animator anim;
-
     [SerializeField] GameObject attack1Prefab;
 
     private float delay = 0;
-    private float atackDelay = 0.25f;
-    private void Start()
+    private float attackDelay = 0.25f;
+
+    void Start()
     {
-        delay = attackTimmer;
+        delay = attackTimer;
     }
 
     void Update()
@@ -35,14 +34,13 @@ public class GolemScript : MonoBehaviour {
         anim.SetTrigger("AttackTrig");
         float rndDelay = Random.Range(0f, 1f);
         Sequence mySequence = DOTween.Sequence();
-        mySequence.AppendInterval(0.25f);
+        mySequence.AppendInterval(attackDelay);
         mySequence.OnComplete(SpawnWave);
-        delay = attackTimmer + rndDelay;
+        delay = attackTimer + rndDelay;
     }
 
     public void SpawnWave()
     {
-        GameObject Created = Instantiate(attack1Prefab, transform.position, attack1Prefab.transform.rotation);
-        //Created.transform.position = Vector3.zero;
+        Instantiate(attack1Prefab, transform.position, attack1Prefab.transform.rotation);
     }
 }
