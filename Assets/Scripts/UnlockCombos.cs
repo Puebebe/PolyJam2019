@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UnlockCombos : MonoBehaviour {
-
+public class UnlockCombos : MonoBehaviour
+{
     public static UnlockCombos Singleton;
     public SnailController Player;
     public ImpScript imp;
-    int waitForCombo = 1;
     public bool teach = false;
+
+    private int waitForCombo = 1;
+    private bool waitForImp = true;
+    private bool glowing = true;
 
     private void Awake()
     {
@@ -30,7 +33,25 @@ public class UnlockCombos : MonoBehaviour {
         {
             Player = GameObject.FindObjectOfType<SnailController>();
         }
-        
+    }
+
+    private void Update()
+    {
+        if (teach && !waitForImp)
+        {
+            if (!glowing)
+            {
+                glowing = true;
+                StartCoroutine(TutorialGlow());
+            }
+            if (Player.lastSkill == ("Skill nr " + waitForCombo))
+            {
+                teach = false;
+                glowing = true;
+                waitForImp = true;
+                StartCoroutine(ShowcaseSkill());
+            }
+        }
     }
 
     public void TeachNewCombo()
@@ -40,66 +61,42 @@ public class UnlockCombos : MonoBehaviour {
         {
             glowing = true;
             teach = true;
-            StartCoroutine(waitForIMP());
+            StartCoroutine(WaitForImp());
             imp.StartUpgrade(Player.unlockedSkills);
         }
         else
         {
             GameStateManager.Singleton.NextScene();
         }
-        
-        
     }
 
-    IEnumerator waitForIMP()
+    IEnumerator WaitForImp()
     {
         yield return new WaitForSecondsRealtime(2f);
         Player.unlockedSkills += 1;
         PanelManager.Singleton.ForceUpdatePanels();
         waitForCombo = Player.unlockedSkills - 1;
         glowing = false;
-        wwaitforimp = false;
+        waitForImp = false;
     }
 
-    private bool wwaitforimp = true;
-    private bool glowing = true;
-
-    private void Update()
-    {
-        if (teach && !wwaitforimp)
-        {
-            if (!glowing)
-            {
-                glowing = true;
-                StartCoroutine(tutorialGlow());
-            }
-            if (Player.lastSkill == ("Skill nr " + waitForCombo))
-            {
-                teach = false;
-                glowing = true;
-                wwaitforimp = true;
-                StartCoroutine(showcaseskill());
-            }
-        }
-    }
-
-    IEnumerator showcaseskill()
+    IEnumerator ShowcaseSkill()
     {
         yield return new WaitForSecondsRealtime(2f);
         GameStateManager.Singleton.NextScene();
     }
 
-    IEnumerator tutorialGlow()
+    IEnumerator TutorialGlow()
     {
         var panel = PanelManager.Singleton.Panels[Player.unlockedSkills - 1].GetComponent<Image>();
         for (int i = 0; i < 10; i++)
         {
-            panel.color = Color.Lerp(Color.white, Color.yellow, i / 10f);
+            panel.color = Color.Lerp(Color.white, Color.magenta, i / 10f);
             yield return new WaitForSecondsRealtime(0.1f);
         }
         for (int i = 0; i < 10; i++)
         {
-            panel.color = Color.Lerp(Color.yellow, Color.white, i / 10f);
+            panel.color = Color.Lerp(Color.magenta, Color.white, i / 10f);
             yield return new WaitForSecondsRealtime(0.1f);
         }
         panel.color = Color.white;
